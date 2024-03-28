@@ -155,6 +155,11 @@
             }
         }
         
+        function resetZoomAndPosition() {
+            cameraZoom = 1
+            cameraOffset = { x: window.innerWidth/2, y: window.innerHeight/2 }
+        }
+        
         canvas.addEventListener('mousedown', onPointerDown)
         canvas.addEventListener('touchstart', (e) => handleTouch(e, onPointerDown))
         canvas.addEventListener('mouseup', onPointerUp)
@@ -166,18 +171,23 @@
         // Adiciona eventos de clique para cada item da navbar
         document.getElementById('solInterior').addEventListener('click', () => {
             currentImage = solInteriorImg;
+            resetZoomAndPosition();
         });
         document.getElementById('terra').addEventListener('click', () => {
             currentImage = terraImg;
+            resetZoomAndPosition();
         });
         document.getElementById('marte').addEventListener('click', () => {
             currentImage = marteImg;
+            resetZoomAndPosition();
         });
         document.getElementById('jupiter').addEventListener('click', () => {
             currentImage = jupiterImg;
+            resetZoomAndPosition();
         });
         document.getElementById('solExterior').addEventListener('click', () => {
             currentImage = solExteriorImg;
+            resetZoomAndPosition();
         });
         
         draw()
