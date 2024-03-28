@@ -108,6 +108,19 @@
       "Júpiter": { "cor": "#FFCF54", "grau": 180, "divisores": 66, "diametroOrbita": 440 * fator, "diametro": 2.97 * fator, "grauPorDia": 0.083, "grauBase": 180 },
     };
 
+    function drawHeaderText() {
+      ctx.fillStyle = 'white';
+      ctx.font = '48px Arial';
+      ctx.textAlign = 'right';
+      ctx.textBaseline = 'top';
+      ctx.fillText('Wonder Space', canvas.width - 20, 20);
+
+      ctx.font = '36px Arial';
+      ctx.fillText('Sistema Solar Interior ' + dateInput.value, canvas.width - 20, 80);
+
+    }
+
+
     function drawStars() {
       const numStars = 1000;
       ctx.fillStyle = 'black';
@@ -276,6 +289,7 @@
       ctx.fillStyle = 'black';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       drawStars(); // Chamar drawStars() por último
+      drawHeaderText()
       drawAsteroids();
       drawKuiper();
       for (const astro in astros) {
