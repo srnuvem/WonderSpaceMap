@@ -109,7 +109,7 @@
     };
 
     function drawStars() {
-      const numStars = 150;
+      const numStars = 1000;
       ctx.fillStyle = 'black';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -273,7 +273,9 @@
     }
 
     function draw() {
-      drawStars();
+      ctx.fillStyle = 'black';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      drawStars(); // Chamar drawStars() por último
       drawAsteroids();
       drawKuiper();
       for (const astro in astros) {
