@@ -18,15 +18,18 @@
 </head>
 <body>
     <canvas id="canvas"></canvas>
+    <img id="sol" src="Sol.png" style="display: none;">
     <script>
         let canvas = document.getElementById("canvas")
         let ctx = canvas.getContext('2d')
         
         let cameraOffset = { x: window.innerWidth/2, y: window.innerHeight/2 }
         let cameraZoom = 1
-        let MAX_ZOOM = 5
-        let MIN_ZOOM = 0.1
-        let SCROLL_SENSITIVITY = 0.0005
+        let MAX_ZOOM = 500
+        let MIN_ZOOM = 1
+        let SCROLL_SENSITIVITY = 0.005
+        
+        let solImg = document.getElementById('sol');
         
         function draw() {
             canvas.width = window.innerWidth
@@ -36,25 +39,9 @@
             ctx.scale(cameraZoom, cameraZoom)
             ctx.translate(-window.innerWidth / 2 + cameraOffset.x, -window.innerHeight / 2 + cameraOffset.y)
             ctx.clearRect(0,0, window.innerWidth, window.innerHeight)
-            ctx.fillStyle = "#991111"
-            drawRect(-50,-50,100,100)
             
-            ctx.fillStyle = "#eecc77"
-            drawRect(-35,-35,20,20)
-            drawRect(15,-35,20,20)
-            drawRect(-35,15,70,20)
+            ctx.drawImage(solImg, -500, -500, 1000, 1000); // Desenha a imagem do sol
             
-            ctx.fillStyle = "#fff"
-            drawText("Simple Pan and Zoom Canvas", -255, -100, 32, "courier")
-            
-            ctx.rotate(-31*Math.PI / 180)
-            ctx.fillStyle = `#${(Math.round(Date.now()/40)%4096).toString(16)}`
-            drawText("Now with touch!", -110, 100, 32, "courier")
-            
-            ctx.fillStyle = "#fff"
-            ctx.rotate(31*Math.PI / 180)
-            
-            drawText("Wow, you found me!", -260, -2000, 48, "courier")
             
             requestAnimationFrame(draw)
         }
