@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Órbitas dos Corpos Celestes</title>
+  <style>
+    body {
+      display: block;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    canvas {
+      display: block;
+      margin: auto;
+      border: 1px solid black;
+    }
+
+    button {
+      display: inline;
+      margin: 10px auto;
+      width: 1000px;
+      height: 200px;
+      font-size: 67px;
+    }
+
+    #dateInput {
+      width: 1000px;
+      height: 200px;
+      font-size: 67px;
+    }
+
+    #dateSlider {
+      width: 4000px;
+      height: 24px;
+    }
+  </style>
+</head>
+
+<body>
+  <br></br>
+  <div style="display: block;">
+    <input type="text" id="dateInput" class="date-input" placeholder="Digite a data (dd/mm/yyyy)">
+    <button id="saveButton">Salvar Imagem</button>
+  </div>
+  <input type="range" id="dateSlider" min="0" max="52" value="0" step="1">
+  <canvas id="myCanvas" width="4320" height="4320"></canvas>
+  <script>
+    const dateInput = document.getElementById('dateInput');
+
+    const dateSlider = document.getElementById('dateSlider');
+    dateSlider.addEventListener('input', function () {
+      const sliderValue = parseInt(dateSlider.value);
+      const diaInicio = new Date(2224, 5, 1);
+      const selectedDate = new Date(diaInicio.getTime() + sliderValue * 7 * 24 * 60 * 60 * 1000);
+
+      // Atualize o texto da data no input text
+      dateInput.value = `${selectedDate.getDate()}/${selectedDate.getMonth() + 1}/${selectedDate.getFullYear()}`;
+
+      const event = new Event('change');
+      dateInput.dispatchEvent(event);
+
+      updatePositions(sliderValue);
+    });
+
+    dateInput.addEventListener('change', function () {
+      const selectedDate = dateInput.value + "";
+      updatePositions(selectedDate);
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+      // Defina o campo de texto para a data "01/06/2224"
+      const dateInput = document.getElementById('dateInput');
+      dateInput.value = '01/06/2224';
+
+      // Defina o slider para a posição zero
+      const dateSlider = document.getElementById('dateSlider');
+      dateSlider.value = 0;
+    });
+
+    const canvas = document.getElementById('myCanvas');
+    const ctx = canvas.getContext('2d');
+    // const fator = canvas.width / 960
+    const fator = canvas.width / 480 * 4
+
+    const astros = {
+      "Sol": { "cor": "#FFB703", "grau": 0, "divisores": 0, "diametroOrbita": 9.36 * fator, "diametro": 10 * fator, "grauPorDia": 0, "grauBase": 0 },
+      "Orientacao1": { "cor": "gray", "grau": 0, "divisores": 12, "diametroOrbita": 40 * fator, "diametro": 0 * fator, "grauPorDia": 0, "grauBase": 0 },
+      "Orientacao2": { "cor": "gray", "grau": 0, "divisores": 18, "diametroOrbita": 60 * fator, "diametro": 0 * fator, "grauPorDia": 0, "grauBase": 0 },
+      "Orientacao3": { "cor": "gray", "grau": 0, "divisores": 24, "diametroOrbita": 80 * fator, "diametro": 0 * fator, "grauPorDia": 0, "grauBase": 0 },
+      "Orientacao4": { "cor": "gray", "grau": 0, "divisores": 30, "diametroOrbita": 100 * fator, "diametro": 0 * fator, "grauPorDia": 0, "grauBase": 0 },
+      "Mercúrio": { "cor": "#FF8D02", "grau": 0, "divisores": 36, "diametroOrbita": 120 * fator, "diametro": 0.55 * fator, "grauPorDia": 4.09, "grauBase": 0 },
+      "Orientacao5": { "cor": "gray", "grau": 0, "divisores": 42, "diametroOrbita": 140 * fator, "diametro": 0 * fator, "grauPorDia": 0, "grauBase": 0 },
+      "Vênus": { "cor": "#CF9311", "grau": 60, "divisores": 48, "diametroOrbita": 160 * fator, "diametro": 0.87 * fator, "grauPorDia": 1.60, "grauBase": 60 },
+      "Orientacao6": { "cor": "gray", "grau": 0, "divisores": 54, "diametroOrbita": 180 * fator, "diametro": 0 * fator, "grauPorDia": 0, "grauBase": 0 },
+      "Terra": { "cor": "#0274FF", "grau": 300, "divisores": 60, "diametroOrbita": 200 * fator, "diametro": 0.90 * fator, "grauPorDia": 0.99, "grauBase": 300 },
+      "Orientacao7": { "cor": "gray", "grau": 0, "divisores": 66, "diametroOrbita": 220 * fator, "diametro": 0 * fator, "grauPorDia": 0, "grauBase": 0 },
+      "Marte": { "cor": "#FD4902", "grau": 60, "divisores": 72, "diametroOrbita": 240 * fator, "diametro": 0.65 * fator, "grauPorDia": 0.52, "grauBase": 60 },
+      "Orientacao8": { "cor": "gray", "grau": 0, "divisores": 42, "diametroOrbita": 280 * fator, "diametro": 0 * fator, "grauPorDia": 0, "grauBase": 0 },
+      "Vesta": { "cor": "#C0AD92", "grau": 300, "divisores": 48, "diametroOrbita": 320 * fator, "diametro": 0.18 * fator, "grauPorDia": 0.214, "grauBase": 300 },
+      "Orientacao Cinturão de Asteroides": { "cor": "gray", "grau": 330, "divisores": 48, "diametroOrbita": 320 * fator, "diametro": 0 * fator, "grauPorDia": 0, "grauBase": 0 },
+      "Pallas": { "cor": "#C0AD92", "grau": 210, "divisores": 48, "diametroOrbita": 320 * fator, "diametro": 0.18 * fator, "grauPorDia": 0.214, "grauBase": 210 },
+      "Ceres": { "cor": "#C0AD92", "grau": 120, "divisores": 48, "diametroOrbita": 320 * fator, "diametro": 0.24 * fator, "grauPorDia": 0.214, "grauBase": 120 },
+      "Orientacao9": { "cor": "gray", "grau": 0, "divisores": 54, "diametroOrbita": 360 * fator, "diametro": 0 * fator, "grauPorDia": 0, "grauBase": 0 },
+      "Orientacao10": { "cor": "gray", "grau": 0, "divisores": 60, "diametroOrbita": 400 * fator, "diametro": 0 * fator, "grauPorDia": 0, "grauBase": 0 },
+      "Júpiter": { "cor": "#FFCF54", "grau": 180, "divisores": 66, "diametroOrbita": 440 * fator, "diametro": 2.97 * fator, "grauPorDia": 0.083, "grauBase": 180 },
+    };
+
+    function drawStars() {
+      const numStars = 150;
+      ctx.fillStyle = 'black';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = 'white';
+
+      for (let i = 0; i < numStars; i++) {
+        const x = Math.random() * canvas.width;
+        const y = Math.random() * canvas.height;
+        ctx.fillRect(x, y, 2, 2);
+      }
+    }
+
+    function drawBody(astro) {
+      const { diametroOrbita, cor, grau, diametro } = astros[astro];
+
+      const raioOrbita = diametroOrbita / 8;
+      const x = canvas.width / 2 + raioOrbita * Math.cos((grau - 90) * (Math.PI / 180));
+      const y = canvas.height / 2 + raioOrbita * Math.sin((grau - 90) * (Math.PI / 180));
+
+      ctx.strokeStyle = cor;
+      ctx.setLineDash([5, 2]); // 5 é o tamanho do traço, 5 é o espaço entre traços
+      ctx.lineWidth = 1;
+
+      ctx.beginPath();
+      ctx.arc(canvas.width / 2, canvas.height / 2, raioOrbita, 0, 2 * Math.PI);
+      ctx.stroke();
+
+      ctx.fillStyle = cor;
+      ctx.beginPath();
+      ctx.arc(x, y, diametro, 0, 2 * Math.PI);
+      ctx.fill();
+
+      ctx.fillStyle = "white";
+      ctx.font = "12px Arial";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "bottom";
+      ctx.fillText(astro, x, y - 1.2 * fator);
+    }
+
+    function drawGuideLine(astro) {
+      const { diametroOrbita, cor, grau } = astros[astro];
+
+      const raioOrbita = diametroOrbita / 8;
+      const x = canvas.width / 2 + raioOrbita * Math.cos((grau - 90) * (Math.PI / 180));
+      const y = canvas.height / 2 + raioOrbita * Math.sin((grau - 90) * (Math.PI / 180));
+
+      ctx.strokeStyle = cor;
+      ctx.setLineDash([5, 2]); // 5 é o tamanho do traço, 5 é o espaço entre traços
+      ctx.lineWidth = 1;
+
+      ctx.beginPath();
+      ctx.arc(canvas.width / 2, canvas.height / 2, raioOrbita, 0, 2 * Math.PI);
+      ctx.stroke();
+    }
+
+    function drawMarkers(astro) {
+      const divisores = astros[astro].divisores;
+
+      for (let i = 0; i < divisores; i++) {
+        const angulo = (360 / divisores) * i;
+
+        const { diametroOrbita, cor } = astros[astro];
+        const grau = angulo;
+
+        const lineSize = fator / 4;
+        const midSize = lineSize / 2;
+
+        const raioOrbita = diametroOrbita / 8;
+        const x = canvas.width / 2 + raioOrbita * Math.cos((grau - 90) * (Math.PI / 180));
+        const y = canvas.height / 2 + raioOrbita * Math.sin((grau - 90) * (Math.PI / 180));
+
+        const inicioX = x - midSize * Math.cos((grau - 90) * (Math.PI / 180));
+        const inicioY = y - midSize * Math.sin((grau - 90) * (Math.PI / 180));
+
+        const fimX = inicioX + lineSize * Math.cos((grau - 90) * (Math.PI / 180));
+        const fimY = inicioY + lineSize * Math.sin((grau - 90) * (Math.PI / 180));
+
+        ctx.strokeStyle = cor;
+        ctx.setLineDash([]); // 5 é o tamanho do traço, 5 é o espaço entre traços
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(inicioX, inicioY);
+        ctx.lineTo(fimX, fimY);
+        ctx.stroke();
+      }
+    }
+
+    function drawAsteroids() {
+      const numAsteroids = 5000; // Número de asteroides a serem desenhados
+      const asteroidSize = fator / 16
+      const raioBelt = astros["Orientacao Cinturão de Asteroides"]?.diametroOrbita / 8; // Raio da órbita
+      if (raioBelt) {
+
+        const cor = astros["Orientacao Cinturão de Asteroides"].cor; // Cor dos asteroides
+
+        ctx.fillStyle = cor;
+
+
+        for (let i = 0; i < numAsteroids; i++) {
+          // Gerar uma posição aleatória ao longo da órbita
+          const angulo = Math.random() * 360;
+          const raioVariacao = Math.random() * fator; // Variacao aleatoria de até 5 pixels para cima ou para baixo
+          const raioFinal = raioBelt + raioVariacao - fator / 2;
+          const x = canvas.width / 2 + raioFinal * Math.cos((angulo - 90) * (Math.PI / 180));
+          const y = canvas.height / 2 + raioFinal * Math.sin((angulo - 90) * (Math.PI / 180));
+
+          // Desenhar o asteroide
+          ctx.fillRect(x, y, asteroidSize, asteroidSize);
+        }
+      }
+    }
+
+    function drawKuiper() {
+      const numAsteroids = 50000; // Número de asteroides a serem desenhados
+      const asteroidSize = fator / 64
+      const raioKuiper = astros["Orientacao Cinturão de Kuiper"]?.diametroOrbita / 8; // Raio da órbita
+      if (raioKuiper) {
+
+        const cor = astros["Orientacao Cinturão de Kuiper"].cor; // Cor dos asteroides
+
+        ctx.fillStyle = cor;
+
+        for (let i = 0; i < numAsteroids; i++) {
+          // Gerar uma posição aleatória ao longo da órbita
+          const angulo = Math.random() * 360;
+          const raioVariacao = Math.random() * fator; // Variacao aleatoria de até 5 pixels para cima ou para baixo
+          const raioFinal = raioKuiper + raioVariacao - fator / 2;
+          const x = canvas.width / 2 + raioFinal * Math.cos((angulo - 90) * (Math.PI / 180));
+          const y = canvas.height / 2 + raioFinal * Math.sin((angulo - 90) * (Math.PI / 180));
+
+          // Desenhar o asteroide
+          ctx.fillRect(x, y, asteroidSize, asteroidSize);
+        }
+      }
+    }
+
+    function saveImage() {
+      const dataURL = canvas.toDataURL('image/png');
+      const link = document.createElement('a');
+      link.href = dataURL;
+      link.download = 'orbitas_celestes_4k.png';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    function drawSun() {
+      const { diametroOrbita, cor, grau, diametro } = astros["Sol"];
+
+      ctx.fillStyle = cor;
+      ctx.beginPath();
+      ctx.arc(canvas.width / 2, canvas.height / 2, diametro, 0, 2 * Math.PI);
+      ctx.fill();
+
+      ctx.fillStyle = "black";
+      ctx.font = "84px Arial";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillText("Sol", canvas.width / 2, canvas.height / 2
+      );
+    }
+
+    function draw() {
+      drawStars();
+      drawAsteroids();
+      drawKuiper();
+      for (const astro in astros) {
+        if (astro !== "Sol") {
+          if (astro.includes("Orientacao")) {
+            drawGuideLine(astro)
+          } else {
+            drawBody(astro);
+          }
+          drawMarkers(astro);
+        }
+      }
+      drawSun();
+    }
+    draw();
+
+    function parseDate(dateString) {
+      const [day, month, year] = dateString.split('/');
+      return new Date(year, month - 1, day); // month - 1 porque os meses no objeto Date são 0-indexados
+    }
+
+    function updatePositions(dateText) {
+      const diaInicio = new Date(2224, 5, 1);
+      const selectedDate = parseDate(dateText)
+      const diasPassados = (selectedDate - diaInicio) / (1000 * 60 * 60 * 24);
+      // console.log(diasPassados)
+
+      for (const astro in astros) {
+        if (astro !== "Sol" && !astro.includes("Orientacao")) {
+          const grauDias = astros[astro].grauPorDia;
+          console.log(grauDias * diasPassados)
+          const grau = (diasPassados * grauDias) < 360 ? (diasPassados * grauDias) : (diasPassados * grauDias) % 360;
+          astros[astro].grau = astros[astro].grauBase + (grau * -1);
+        }
+      }
+
+      // Redraw celestial bodies with updated positions
+      ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear canvas
+
+      draw();
+    }
+
+    document.getElementById("saveButton").addEventListener("click", saveImage);
+  </script>
+</body>
+
+</html>

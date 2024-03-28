@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Órbitas dos Corpos Celestes</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    canvas {
+      display: block;
+      margin: auto;
+      border: 1px solid black;
+    }
+
+    button {
+      display: block;
+      margin: 10px auto;
+    }
+  </style>
+</head>
+
+<body>
+  <button id="saveButton">Salvar Imagem</button>
+  <canvas id="myCanvas" width="1080" height="1080"></canvas>
+  <script>
+
+    const canvas = document.getElementById('myCanvas');
+    const ctx = canvas.getContext('2d');
+    // const fator = canvas.width / 960
+    const fator = canvas.width / 480 * 64
+
+    const astros = {
+      "Marte": { cor: "#FD4902", grau: 0, divisores: 0, diametroOrbita: 0 * fator, diametro: 0.65 * fator },
+      "Phobos": { cor: "White", grau: 270, divisores: 1, diametroOrbita:  20 * fator, diametro:  0.04 * fator },
+      "Deimos": { cor: "LightGray", grau: 90, divisores: 1, diametroOrbita:  20 * fator, diametro:  0.03 * fator },
+    };
+
+    function drawStars() {
+      const numStars = 150;
+      ctx.fillStyle = 'black';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = 'white';
+
+      for (let i = 0; i < numStars; i++) {
+        const x = Math.random() * canvas.width;
+        const y = Math.random() * canvas.height;
+        ctx.fillRect(x, y, 2, 2);
+      }
+    }
+
+    function drawBody(astro) {
+      const { diametroOrbita, cor, grau, diametro } = astros[astro];
+
+      const raioOrbita = diametroOrbita / 8;
+      const x = canvas.width / 2 + raioOrbita * Math.cos((grau - 90) * (Math.PI / 180));
+      const y = canvas.height / 2 + raioOrbita * Math.sin((grau - 90) * (Math.PI / 180));
+
+      ctx.strokeStyle = cor;
+      ctx.setLineDash([5, 2]); // 5 é o tamanho do traço, 5 é o espaço entre traços
+      ctx.lineWidth = 1;
+
+      ctx.beginPath();
+      ctx.arc(canvas.width / 2, canvas.height / 2, raioOrbita, 0, 2 * Math.PI);
+      ctx.stroke();
+
+      ctx.fillStyle = cor;
+      ctx.beginPath();
+      ctx.arc(x, y, diametro, 0, 2 * Math.PI);
+      ctx.fill();
+
+      ctx.fillStyle = "white";
+      ctx.font = "12px Arial";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "bottom";
+      ctx.fillText(astro, x, y - 0.1 * fator);
+    }
+
+    function drawGuideLine(astro) {
+      const { diametroOrbita, cor, grau } = astros[astro];
+
+      const raioOrbita = diametroOrbita / 8;
+      const x = canvas.width / 2 + raioOrbita * Math.cos((grau - 90) * (Math.PI / 180));
+      const y = canvas.height / 2 + raioOrbita * Math.sin((grau - 90) * (Math.PI / 180));
+
+      ctx.strokeStyle = cor;
+      ctx.setLineDash([5, 2]); // 5 é o tamanho do traço, 5 é o espaço entre traços
+      ctx.lineWidth = 1;
+
+      ctx.beginPath();
+      ctx.arc(canvas.width / 2, canvas.height / 2, raioOrbita, 0, 2 * Math.PI);
+      ctx.stroke();
+    }
+
+    function drawMarkers(astro) {
+      const divisores = astros[astro].divisores;
+
+      for (let i = 0; i < divisores; i++) {
+        const angulo = (360 / divisores) * i;
+
+        const { diametroOrbita, cor } = astros[astro];
+        const grau = angulo;
+
+        const lineSize = fator / 4;
+        const midSize = lineSize / 2;
+
+        const raioOrbita = diametroOrbita / 8;
+        const x = canvas.width / 2 + raioOrbita * Math.cos((grau - 90) * (Math.PI / 180));
+        const y = canvas.height / 2 + raioOrbita * Math.sin((grau - 90) * (Math.PI / 180));
+
+        const inicioX = x - midSize * Math.cos((grau - 90) * (Math.PI / 180));
+        const inicioY = y - midSize * Math.sin((grau - 90) * (Math.PI / 180));
+
+        const fimX = inicioX + lineSize * Math.cos((grau - 90) * (Math.PI / 180));
+        const fimY = inicioY + lineSize * Math.sin((grau - 90) * (Math.PI / 180));
+
+        ctx.strokeStyle = cor;
+        ctx.setLineDash([]); // 5 é o tamanho do traço, 5 é o espaço entre traços
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.moveTo(inicioX, inicioY);
+        ctx.lineTo(fimX, fimY);
+        ctx.stroke();
+      }
+    }
+
+    function drawAsteroids() {
+      const numAsteroids = 5000; // Número de asteroides a serem desenhados
+      const asteroidSize = fator / 16
+      const raioOrbita = astros["Orientacao Cinturão de Asteroides"].diametroOrbita / 8; // Raio da órbita
+      const cor = astros["Orientacao Cinturão de Asteroides"].cor; // Cor dos asteroides
+
+      ctx.fillStyle = cor;
+
+
+      for (let i = 0; i < numAsteroids; i++) {
+        // Gerar uma posição aleatória ao longo da órbita
+        const angulo = Math.random() * 360;
+        const raioVariacao = Math.random() * fator; // Variacao aleatoria de até 5 pixels para cima ou para baixo
+        const raioFinal = raioOrbita + raioVariacao - fator / 2;
+        const x = canvas.width / 2 + raioFinal * Math.cos((angulo - 90) * (Math.PI / 180));
+        const y = canvas.height / 2 + raioFinal * Math.sin((angulo - 90) * (Math.PI / 180));
+
+        // Desenhar o asteroide
+        ctx.fillRect(x, y, asteroidSize, asteroidSize);
+      }
+    }
+
+    function saveImage() {
+      const dataURL = canvas.toDataURL('image/png');
+      const link = document.createElement('a');
+      link.href = dataURL;
+      link.download = 'orbitas_celestes_4k.png';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    function drawSun() {
+      const { diametroOrbita, cor, grau, diametro } = astros["Marte"];
+
+      ctx.fillStyle = cor;
+      ctx.beginPath();
+      ctx.arc(canvas.width / 2, canvas.height / 2, diametro, 0, 2 * Math.PI);
+      ctx.fill();
+
+      ctx.fillStyle = "black";
+      ctx.font = "12px Arial";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillText("Marte", canvas.width / 2, canvas.height / 2
+      );
+    }
+
+    drawStars();
+
+    // drawAsteroids();
+    for (const astro in astros) {
+      if (astro !== "Marte") {
+        if (astro.includes("Orientacao")) {
+          drawGuideLine(astro)
+        } else {
+          drawBody(astro);
+        }
+        drawMarkers(astro);
+
+      }
+    }
+
+    drawSun();
+
+    document.getElementById("saveButton").addEventListener("click", saveImage);
+  </script>
+</body>
+
+</html>
