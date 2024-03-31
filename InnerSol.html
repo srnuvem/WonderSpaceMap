@@ -46,7 +46,7 @@
     <button id="saveButton">Salvar Imagem</button>
   </div>
   <input type="range" id="dateSlider" min="0" max="52" value="0" step="1">
-  <canvas id="myCanvas" width="8640" height="8640"></canvas>
+  <canvas id="myCanvas" width="4320" height="4320"></canvas>
   <script>
     const dateInput = document.getElementById('dateInput');
 
@@ -83,30 +83,31 @@
     const canvas = document.getElementById('myCanvas');
     const ctx = canvas.getContext('2d');
     // const fator = canvas.width / 960
-    const fator = canvas.width / 480 * 4
+    const fator = canvas.width / 480 * 5
 
     const astros = {
-      "Sol": { "cor": "#FFB703", "grau": 0, "divisores": 0, "diametroOrbita": 9.36 * fator, "diametro": 10 * fator, "grauPorDia": 0, "grauBase": 0 },
-      "Orientacao1": { "cor": "gray", "grau": 0, "divisores": 12, "diametroOrbita": 40 * fator, "diametro": 0 * fator, "grauPorDia": 0, "grauBase": 0 },
-      "Orientacao2": { "cor": "gray", "grau": 0, "divisores": 18, "diametroOrbita": 60 * fator, "diametro": 0 * fator, "grauPorDia": 0, "grauBase": 0 },
-      "Orientacao3": { "cor": "gray", "grau": 0, "divisores": 24, "diametroOrbita": 80 * fator, "diametro": 0 * fator, "grauPorDia": 0, "grauBase": 0 },
-      "Orientacao4": { "cor": "gray", "grau": 0, "divisores": 30, "diametroOrbita": 100 * fator, "diametro": 0 * fator, "grauPorDia": 0, "grauBase": 0 },
-      "Mercúrio": { "cor": "#FF8D02", "grau": 0, "divisores": 36, "diametroOrbita": 120 * fator, "diametro": 0.55 * fator, "grauPorDia": 4.09, "grauBase": 0 },
-      "Orientacao5": { "cor": "gray", "grau": 0, "divisores": 42, "diametroOrbita": 140 * fator, "diametro": 0 * fator, "grauPorDia": 0, "grauBase": 0 },
-      "Vênus": { "cor": "#CF9311", "grau": 60, "divisores": 48, "diametroOrbita": 160 * fator, "diametro": 0.87 * fator, "grauPorDia": 1.60, "grauBase": 60 },
-      "Orientacao6": { "cor": "gray", "grau": 0, "divisores": 54, "diametroOrbita": 180 * fator, "diametro": 0 * fator, "grauPorDia": 0, "grauBase": 0 },
-      "Terra": { "cor": "#0274FF", "grau": 300, "divisores": 60, "diametroOrbita": 200 * fator, "diametro": 0.90 * fator, "grauPorDia": 0.99, "grauBase": 300 },
-      "Orientacao7": { "cor": "gray", "grau": 0, "divisores": 66, "diametroOrbita": 220 * fator, "diametro": 0 * fator, "grauPorDia": 0, "grauBase": 0 },
-      "Marte": { "cor": "#FD4902", "grau": 60, "divisores": 72, "diametroOrbita": 240 * fator, "diametro": 0.65 * fator, "grauPorDia": 0.52, "grauBase": 60 },
-      "Orientacao8": { "cor": "gray", "grau": 0, "divisores": 42, "diametroOrbita": 280 * fator, "diametro": 0 * fator, "grauPorDia": 0, "grauBase": 0 },
-      "Vesta": { "cor": "#C0AD92", "grau": 300, "divisores": 48, "diametroOrbita": 320 * fator, "diametro": 0.18 * fator, "grauPorDia": 0.214, "grauBase": 300 },
-      "Orientacao Cinturão de Asteroides": { "cor": "gray", "grau": 330, "divisores": 48, "diametroOrbita": 320 * fator, "diametro": 0 * fator, "grauPorDia": 0, "grauBase": 0 },
-      "Pallas": { "cor": "#C0AD92", "grau": 210, "divisores": 48, "diametroOrbita": 320 * fator, "diametro": 0.18 * fator, "grauPorDia": 0.214, "grauBase": 210 },
-      "Ceres": { "cor": "#C0AD92", "grau": 120, "divisores": 48, "diametroOrbita": 320 * fator, "diametro": 0.24 * fator, "grauPorDia": 0.214, "grauBase": 120 },
-      "Orientacao9": { "cor": "gray", "grau": 0, "divisores": 54, "diametroOrbita": 360 * fator, "diametro": 0 * fator, "grauPorDia": 0, "grauBase": 0 },
-      "Orientacao10": { "cor": "gray", "grau": 0, "divisores": 60, "diametroOrbita": 400 * fator, "diametro": 0 * fator, "grauPorDia": 0, "grauBase": 0 },
-      "Júpiter": { "cor": "#FFCF54", "grau": 180, "divisores": 66, "diametroOrbita": 440 * fator, "diametro": 2.97 * fator, "grauPorDia": 0.083, "grauBase": 180 },
+      "Sol": { "cor": "#FFB703", "corTexto": "#FFFFFF", "grau": 0, "divisores": 0, "diametroOrbita": 9.36 * fator, "diametro": 10 * fator, "grauPorDia": 0, "grauBase": 0 },
+      "Orientacao1": { "cor": "gray", "corTexto": "#FFFFFF", "grau": 0, "divisores": 12, "diametroOrbita": 40 * fator, "diametro": 0 * fator, "grauPorDia": 0, "grauBase": 0 },
+      "Orientacao2": { "cor": "gray", "corTexto": "#FFFFFF", "grau": 0, "divisores": 18, "diametroOrbita": 60 * fator, "diametro": 0 * fator, "grauPorDia": 0, "grauBase": 0 },
+      "Orientacao3": { "cor": "gray", "corTexto": "#FFFFFF", "grau": 0, "divisores": 24, "diametroOrbita": 80 * fator, "diametro": 0 * fator, "grauPorDia": 0, "grauBase": 0 },
+      "Orientacao4": { "cor": "gray", "corTexto": "#FFFFFF", "grau": 0, "divisores": 30, "diametroOrbita": 100 * fator, "diametro": 0 * fator, "grauPorDia": 0, "grauBase": 0 },
+      "Mercúrio": { "cor": "#FF8D02", "corTexto": "#FFFFFF", "grau": 0, "divisores": 36, "diametroOrbita": 120 * fator, "diametro": 0.55 * fator, "grauPorDia": 4.09, "grauBase": 0 },
+      "Orientacao5": { "cor": "gray", "corTexto": "#FFFFFF", "grau": 0, "divisores": 42, "diametroOrbita": 140 * fator, "diametro": 0 * fator, "grauPorDia": 0, "grauBase": 0 },
+      "Vênus": { "cor": "#CF9311", "corTexto": "#FFFFFF", "grau": 60, "divisores": 48, "diametroOrbita": 160 * fator, "diametro": 0.87 * fator, "grauPorDia": 1.60, "grauBase": 60 },
+      "Orientacao6": { "cor": "gray", "corTexto": "#FFFFFF", "grau": 0, "divisores": 54, "diametroOrbita": 180 * fator, "diametro": 0 * fator, "grauPorDia": 0, "grauBase": 0 },
+      "Terra": { "cor": "#0274FF", "corTexto": "#FFFFFF", "grau": 300, "divisores": 60, "diametroOrbita": 200 * fator, "diametro": 0.90 * fator, "grauPorDia": 0.99, "grauBase": 300 },
+      "Orientacao7": { "cor": "gray", "corTexto": "#FFFFFF", "grau": 0, "divisores": 66, "diametroOrbita": 220 * fator, "diametro": 0 * fator, "grauPorDia": 0, "grauBase": 0 },
+      "Marte": { "cor": "#FD4902", "corTexto": "#FFFFFF", "grau": 60, "divisores": 72, "diametroOrbita": 240 * fator, "diametro": 0.65 * fator, "grauPorDia": 0.52, "grauBase": 60 },
+      "Orientacao8": { "cor": "gray", "corTexto": "#FFFFFF", "grau": 0, "divisores": 78, "diametroOrbita": 260 * fator, "diametro": 0 * fator, "grauPorDia": 0, "grauBase": 0 },
+      "Orientacao9": { "cor": "gray", "corTexto": "#FFFFFF", "grau": 0, "divisores": 84, "diametroOrbita": 280 * fator, "diametro": 0 * fator, "grauPorDia": 0, "grauBase": 0 },
+      "Orientacao10": { "cor": "gray", "corTexto": "#FFFFFF", "grau": 0, "divisores": 90, "diametroOrbita": 300 * fator, "diametro": 0 * fator, "grauPorDia": 0, "grauBase": 0 },
+      
+      "Vesta": { "cor": "lightGray", "corTexto": "#FFFFFF", "grau": 300, "divisores": 96, "diametroOrbita": 320 * fator, "diametro": 0.18 * fator, "grauPorDia": 0.214, "grauBase": 300 },
+      "Orientacao Cinturão de Asteroides": { "cor": "gray", "corTexto": "#FFFFFF", "grau": 330, "divisores": 96, "diametroOrbita": 320 * fator, "diametro": 0 * fator, "grauPorDia": 0, "grauBase": 0 },
+      "Pallas": { "cor": "lightGray", "corTexto": "#FFFFFF", "grau": 210, "divisores": 96, "diametroOrbita": 320 * fator, "diametro": 0.18 * fator, "grauPorDia": 0.214, "grauBase": 210 },
+      "Ceres": { "cor": "lightGray", "corTexto": "#FFFFFF", "grau": 120, "divisores": 96, "diametroOrbita": 320 * fator, "diametro": 0.24 * fator, "grauPorDia": 0.214, "grauBase": 120 },
     };
+
 
     function drawHeaderText() {
       ctx.fillStyle = 'white';
@@ -116,13 +117,13 @@
       ctx.fillText('Wonder Space', canvas.width - 20, 20);
 
       ctx.font = '36px Arial';
-      ctx.fillText('Sistema Solar Interior ' + dateInput.value, canvas.width - 20, 80);
-
+      ctx.fillText('Sistema Solar ' + dateInput.value, canvas.width - 20, 80);
+      ctx.fillText('Marcações: 10G', canvas.width - 20, 180);
     }
 
 
     function drawStars() {
-      const numStars = 1000;
+      const numStars = 500;
       ctx.fillStyle = 'black';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -136,7 +137,7 @@
     }
 
     function drawBody(astro) {
-      const { diametroOrbita, cor, grau, diametro } = astros[astro];
+      const { diametroOrbita, cor, grau, diametro, corTexto } = astros[astro];
 
       const raioOrbita = diametroOrbita / 8;
       const x = canvas.width / 2 + raioOrbita * Math.cos((grau - 90) * (Math.PI / 180));
@@ -155,11 +156,13 @@
       ctx.arc(x, y, diametro, 0, 2 * Math.PI);
       ctx.fill();
 
-      ctx.fillStyle = "white";
-      ctx.font = "12px Arial";
+      ctx.fillStyle = corTexto;
+      ctx.font = "24px Arial";
       ctx.textAlign = "center";
       ctx.textBaseline = "bottom";
-      ctx.fillText(astro, x, y - 1.2 * fator);
+      if (!astro.includes("Sistema")) {
+        ctx.fillText(astro, x, y - fator);
+      }
     }
 
     function drawGuideLine(astro) {
@@ -211,7 +214,7 @@
     }
 
     function drawAsteroids() {
-      const numAsteroids = 5000; // Número de asteroides a serem desenhados
+      const numAsteroids = 4000; // Número de asteroides a serem desenhados
       const asteroidSize = fator / 16
       const raioBelt = astros["Orientacao Cinturão de Asteroides"]?.diametroOrbita / 8; // Raio da órbita
       if (raioBelt) {

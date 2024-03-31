@@ -35,7 +35,6 @@
         <div class="navbar-item" id="terra">Sistema Terra</div>
         <div class="navbar-item" id="marte">Sistema Marte</div>
         <div class="navbar-item" id="jupiter">Sistema Jupiter</div>
-        <div class="navbar-item" id="solExterior">Sistema Solar Exterior</div>
         <div class="navbar-item" id="sol">Sistema Solar Completo</div>
     </div>
     <canvas id="canvas"></canvas>
@@ -43,7 +42,6 @@
     <img id="terraImg" src="Terra.png" style="display: none;">
     <img id="marteImg" src="Marte.png" style="display: none;">
     <img id="jupiterImg" src="Jupiter.png" style="display: none;">
-    <img id="solExteriorImg" src="SolExterior.png" style="display: none;">
     <img id="solImg" src="Sol.png" style="display: none;">
     <script>
         let canvas = document.getElementById("canvas")
@@ -59,7 +57,6 @@
         let terraImg = document.getElementById('terraImg');
         let marteImg = document.getElementById('marteImg');
         let jupiterImg = document.getElementById('jupiterImg');
-        let solExteriorImg = document.getElementById('solExteriorImg');
         let solImg = document.getElementById('solImg');
         
         let currentImage = solInteriorImg; // Imagem atualmente renderizada
@@ -186,10 +183,6 @@
         });
         document.getElementById('jupiter').addEventListener('click', () => {
             currentImage = jupiterImg;
-            resetZoomAndPosition();
-        });
-        document.getElementById('solExterior').addEventListener('click', () => {
-            currentImage = solExteriorImg;
             resetZoomAndPosition();
         });
         document.getElementById('sol').addEventListener('click', () => {
