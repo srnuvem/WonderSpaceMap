@@ -30,13 +30,25 @@
     const canvas = document.getElementById('myCanvas');
     const ctx = canvas.getContext('2d');
     // const fator = canvas.width / 960
-    const fator = canvas.width / 480 * 80
+    const fator = canvas.width / 480 * 64
 
     const astros = {
       "Marte": { cor: "#FD4902", grau: 0, divisores: 0, diametroOrbita: 0 * fator, diametro: 0.65 * fator },
-      "Phobos": { cor: "White", grau: 270, divisores: 1, diametroOrbita:  10 * fator, diametro:  0.04 * fator },
-      "Deimos": { cor: "LightGray", grau: 90, divisores: 1, diametroOrbita:  20 * fator, diametro:  0.03 * fator },
+      "Phobos": { cor: "White", grau: 270, divisores: 3, diametroOrbita:  10 * fator, diametro:  0.04 * fator },
+      "Deimos": { cor: "LightGray", grau: 90, divisores: 6, diametroOrbita:  20 * fator, diametro:  0.03 * fator },
     };
+
+    function drawHeaderText() {
+      ctx.fillStyle = 'white';
+      ctx.font = '24px Arial';
+      ctx.textAlign = 'right';
+      ctx.textBaseline = 'top';
+      ctx.fillText('Wonder Space', canvas.width - 20, 20);
+
+      ctx.font = '18px Arial';
+      ctx.fillText('Sistema Marte', canvas.width - 20, 50);
+      ctx.fillText('Marcações: 1Gh', canvas.width - 20, 80);
+    }
 
     function drawStars() {
       const numStars = 150;
@@ -104,7 +116,7 @@
         const { diametroOrbita, cor } = astros[astro];
         const grau = angulo;
 
-        const lineSize = fator / 4;
+        const lineSize = fator / 8;
         const midSize = lineSize / 2;
 
         const raioOrbita = diametroOrbita / 8;
@@ -191,6 +203,7 @@
     }
 
     drawSun();
+    drawHeaderText();
 
     document.getElementById("saveButton").addEventListener("click", saveImage);
   </script>

@@ -34,17 +34,30 @@
 
     const astros = {
       "Jupiter": { cor: "#FFCF54", grau: 0, divisores: 0, diametroOrbita: 0 * fator, diametro: 2.97 * fator },
+      "Orientacao1": { cor: "gray", grau: 0, divisores: 6, diametroOrbita: 20 * fator, diametro: 0 * fator },
       "Amalteia": { cor: "#878787", grau:0, divisores: 12, diametroOrbita: 40 * fator, diametro: 0.13 * fator },
-      "Orientacao1": { cor: "gray", grau: 0, divisores: 18, diametroOrbita: 60 * fator, diametro: 0 * fator },
-      "Orientacao2": { cor: "gray", grau: 0, divisores: 24, diametroOrbita: 80 * fator, diametro: 0 * fator },
+      "Orientacao2": { cor: "gray", grau: 0, divisores: 18, diametroOrbita: 60 * fator, diametro: 0 * fator },
+      "Orientacao3": { cor: "gray", grau: 0, divisores: 24, diametroOrbita: 80 * fator, diametro: 0 * fator },
       "Io": { cor: "#F9F290", grau: 120, divisores: 30, diametroOrbita: 100 * fator, diametro: 0.48 * fator },
       "Europa": { cor: "#75341A", grau: 60, divisores: 36, diametroOrbita: 120 * fator, diametro: 0.44 * fator },
-      "Orientacao10": { cor: "gray", grau: 0, divisores: 42, diametroOrbita: 140 * fator, diametro: 0 * fator },
+      "Orientacao4": { cor: "gray", grau: 0, divisores: 42, diametroOrbita: 140 * fator, diametro: 0 * fator },
       "Ganimedes": { cor: "#B8B0A0", grau: 90, divisores: 48, diametroOrbita: 160 * fator, diametro: 0.58 * fator },
-      "Orientacao13": { cor: "gray", grau: 0, divisores: 54, diametroOrbita: 180 * fator, diametro: 0 * fator },
-      "Orientacao15": { cor: "gray", grau: 0, divisores: 60, diametroOrbita: 200 * fator, diametro: 0 * fator },
+      "Orientacao5": { cor: "gray", grau: 0, divisores: 54, diametroOrbita: 180 * fator, diametro: 0 * fator },
+      "Orientacao6": { cor: "gray", grau: 0, divisores: 60, diametroOrbita: 200 * fator, diametro: 0 * fator },
       "Calisto": { cor: "#45655B", grau: 180, divisores: 66, diametroOrbita: 220 * fator, diametro: 0.55 * fator },
     };
+
+    function drawHeaderText() {
+      ctx.fillStyle = 'white';
+      ctx.font = '48px Arial';
+      ctx.textAlign = 'right';
+      ctx.textBaseline = 'top';
+      ctx.fillText('Wonder Space', canvas.width - 20, 20);
+
+      ctx.font = '36px Arial';
+      ctx.fillText('Sistema Jupiter', canvas.width - 20, 80);
+      ctx.fillText('Marcações: 1Gh', canvas.width - 20, 180);
+    }
 
     function drawStars() {
       const numStars = 150;
@@ -199,6 +212,7 @@
     }
 
     drawSun();
+    drawHeaderText();
 
     document.getElementById("saveButton").addEventListener("click", saveImage);
   </script>
