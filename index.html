@@ -81,7 +81,7 @@
             });
             L.imageOverlay(imageUrl, imageBounds).addTo(map);
             map.setMaxBounds(imageBounds);
-            map.setView([4320, 4320], -1);
+            map.setView([4320, 4320], 0);
         }
 
         // Adiciona evento de clique a cada item da navbar
@@ -89,17 +89,6 @@
         navbarItems.forEach(function (item) {
             item.addEventListener('click', updateImage);
         });
-
-        // Define a imagem inicial
-        var lastSaturday = getLastSaturday();
-        var year = lastSaturday.slice(0, 4);
-        var month = lastSaturday.slice(5, 7);
-        var day = lastSaturday.slice(8, 10);
-        var imageUrl = `SolGenResources/Sol-${day}_${month}_${parseInt(year) + 200}.png`;
-        var imageBounds = [[0, 0], [8640, 8640]];
-        L.imageOverlay(imageUrl, imageBounds).addTo(map);
-        map.setMaxBounds(imageBounds);
-        map.setView([4320, 4320], -1);
 
         // Define a imagem inicial como "Sistema Solar Interior"
         var defaultImage = document.querySelector('.navbar-item[data-image="SolInterior"]');
