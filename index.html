@@ -31,11 +31,11 @@
 
 <body>
     <div class="navbar">
-        <div class="navbar-item" data-image="SolInterior">Sistema Solar Interior</div>
-        <div class="navbar-item" data-image="Terra">Sistema Terra</div>
-        <div class="navbar-item" data-image="Marte">Sistema Marte</div>
-        <div class="navbar-item" data-image="Jupiter">Sistema Jupiter</div>
-        <div class="navbar-item" data-image="Sol">Sistema Solar Completo</div>
+        <div class="navbar-item" data-image="SolInterior">Sol Interior</div>
+        <div class="navbar-item" data-image="Terra">Terra</div>
+        <div class="navbar-item" data-image="Marte">Marte</div>
+        <div class="navbar-item" data-image="Jupiter">Jupiter</div>
+        <div class="navbar-item" data-image="Sol">Sol</div>
     </div>
 
     <div id="map"></div>
@@ -68,7 +68,6 @@
                 var month = lastSaturday.slice(5, 7);
                 var day = lastSaturday.slice(8, 10);
                 var imageUrl = `${dataImage}Resources/${dataImage}-${day}_${month}_${parseInt(year) + 200}.png`;
-                console.log(imageUrl)
             } else {
                 var imageUrl = `${dataImage}.png`; 
             }
