@@ -1,0 +1,196 @@
+{
+    "name": "",
+    "fator": 0,
+    "primary": {
+        "cor": "#FFB703",
+        "corTexto": "#FFFFFF",
+        "grau": 0,
+        "divisores": 0,
+        "diametroOrbita": 0,
+        "diametro": 0,
+        "grauPorDia": 0,
+        "grauBase": 0
+    },
+    "orbits": {
+        "Orientacao1": {
+            "cor": "gray",
+            "corTexto": "#FFFFFF",
+            "grau": 0,
+            "divisores": 12,
+            "diametroOrbita": 0,
+            "diametro": 0,
+            "grauPorDia": 0,
+            "grauBase": 0
+        },
+        "Orientacao2": {
+            "cor": "gray",
+            "corTexto": "#FFFFFF",
+            "grau": 0,
+            "divisores": 18,
+            "diametroOrbita": 0,
+            "diametro": 0,
+            "grauPorDia": 0,
+            "grauBase": 0
+        },
+        "Orientacao3": {
+            "cor": "gray",
+            "corTexto": "#FFFFFF",
+            "grau": 0,
+            "divisores": 24,
+            "diametroOrbita": 0,
+            "diametro": 0,
+            "grauPorDia": 0,
+            "grauBase": 0
+        },
+        "Orientacao4": {
+            "cor": "gray",
+            "corTexto": "#FFFFFF",
+            "grau": 0,
+            "divisores": 30,
+            "diametroOrbita": 0,
+            "diametro": 0,
+            "grauPorDia": 0,
+            "grauBase": 0
+        },
+        "Mercúrio": {
+            "cor": "#FF8D02",
+            "corTexto": "#FFFFFF",
+            "grau": 0,
+            "divisores": 36,
+            "diametroOrbita": 0,
+            "diametro": 0,
+            "grauPorDia": 4.09,
+            "grauBase": 0
+        },
+        "Orientacao5": {
+            "cor": "gray",
+            "corTexto": "#FFFFFF",
+            "grau": 0,
+            "divisores": 42,
+            "diametroOrbita": 0,
+            "diametro": 0,
+            "grauPorDia": 0,
+            "grauBase": 0
+        },
+        "Vênus": {
+            "cor": "#CF9311",
+            "corTexto": "#FFFFFF",
+            "grau": 60,
+            "divisores": 48,
+            "diametroOrbita": 0,
+            "diametro": 0,
+            "grauPorDia": 1.6,
+            "grauBase": 60
+        },
+        "Orientacao6": {
+            "cor": "gray",
+            "corTexto": "#FFFFFF",
+            "grau": 0,
+            "divisores": 54,
+            "diametroOrbita": 0,
+            "diametro": 0,
+            "grauPorDia": 0,
+            "grauBase": 0
+        },
+        "Terra": {
+            "cor": "#0274FF",
+            "corTexto": "#FFFFFF",
+            "grau": 300,
+            "divisores": 60,
+            "diametroOrbita": 0,
+            "diametro": 0,
+            "grauPorDia": 0.99,
+            "grauBase": 300
+        },
+        "Orientacao7": {
+            "cor": "gray",
+            "corTexto": "#FFFFFF",
+            "grau": 0,
+            "divisores": 66,
+            "diametroOrbita": 0,
+            "diametro": 0,
+            "grauPorDia": 0,
+            "grauBase": 0
+        },
+        "Marte": {
+            "cor": "#FD4902",
+            "corTexto": "#FFFFFF",
+            "grau": 60,
+            "divisores": 72,
+            "diametroOrbita": 0,
+            "diametro": 0,
+            "grauPorDia": 0.52,
+            "grauBase": 60
+        },
+        "Orientacao8": {
+            "cor": "gray",
+            "corTexto": "#FFFFFF",
+            "grau": 0,
+            "divisores": 78,
+            "diametroOrbita": 0,
+            "diametro": 0,
+            "grauPorDia": 0,
+            "grauBase": 0
+        },
+        "Orientacao9": {
+            "cor": "gray",
+            "corTexto": "#FFFFFF",
+            "grau": 0,
+            "divisores": 84,
+            "diametroOrbita": 0,
+            "diametro": 0,
+            "grauPorDia": 0,
+            "grauBase": 0
+        },
+        "Orientacao10": {
+            "cor": "gray",
+            "corTexto": "#FFFFFF",
+            "grau": 0,
+            "divisores": 90,
+            "diametroOrbita": 0,
+            "diametro": 0,
+            "grauPorDia": 0,
+            "grauBase": 0
+        },
+        "Vesta": {
+            "cor": "lightGray",
+            "corTexto": "#FFFFFF",
+            "grau": 300,
+            "divisores": 96,
+            "diametroOrbita": 0,
+            "diametro": 0,
+            "grauPorDia": 0.214,
+            "grauBase": 300
+        },
+        "Orientacao Cinturão de Asteroides": {
+            "cor": "gray",
+            "corTexto": "#FFFFFF",
+            "grau": 330,
+            "divisores": 96,
+            "diametroOrbita": 0,
+            "diametro": 0,
+            "grauPorDia": 0,
+            "grauBase": 0
+        },
+        "Pallas": {
+            "cor": "lightGray",
+            "corTexto": "#FFFFFF",
+            "grau": 210,
+            "divisores": 96,
+            "diametroOrbita": 0,
+            "diametro": 0,
+            "grauPorDia": 0.214,
+            "grauBase": 210
+        },
+        "Ceres": {
+            "cor": "lightGray",
+            "corTexto": "#FFFFFF",
+            "grau": 120,
+            "divisores": 96,
+            "diametroOrbita": 0,
+            "diametro": 0,
+            "grauPorDia": 0.214,
+            "grauBase": 120
+        }
+    }
+}

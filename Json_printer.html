@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Órbitas dos Corpos Celestes</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    canvas {
+      display: block;
+      margin: auto;
+      border: 1px solid black;
+    }
+
+    button {
+      display: block;
+      margin: 10px auto;
+    }
+  </style>
+</head>
+
+<body>
+  <button id="saveButton">Salvar Imagem</button>
+  <canvas id="myCanvas" width="4320" height="4320"></canvas>
+  <script>
+
+    const canvas = document.getElementById('myCanvas');
+    const ctx = canvas.getContext('2d');
+    // const fator = canvas.width / 960
+    const fator = 0;
+
+    const astros = {
+      "Sol": { "cor": "#FFB703", "corTexto": "#FFFFFF", "grau": 0, "divisores": 0, "diametroOrbita": 9.36 * fator, "diametro": 10 * fator, "grauPorDia": 0, "grauBase": 0 },
+      "Orientacao1": { "cor": "gray", "corTexto": "#FFFFFF", "grau": 0, "divisores": 12, "diametroOrbita": 40 * fator, "diametro": 0 * fator, "grauPorDia": 0, "grauBase": 0 },
+      "Orientacao2": { "cor": "gray", "corTexto": "#FFFFFF", "grau": 0, "divisores": 18, "diametroOrbita": 60 * fator, "diametro": 0 * fator, "grauPorDia": 0, "grauBase": 0 },
+      "Orientacao3": { "cor": "gray", "corTexto": "#FFFFFF", "grau": 0, "divisores": 24, "diametroOrbita": 80 * fator, "diametro": 0 * fator, "grauPorDia": 0, "grauBase": 0 },
+      "Orientacao4": { "cor": "gray", "corTexto": "#FFFFFF", "grau": 0, "divisores": 30, "diametroOrbita": 100 * fator, "diametro": 0 * fator, "grauPorDia": 0, "grauBase": 0 },
+      "Mercúrio": { "cor": "#FF8D02", "corTexto": "#FFFFFF", "grau": 0, "divisores": 36, "diametroOrbita": 120 * fator, "diametro": 0.55 * fator, "grauPorDia": 4.09, "grauBase": 0 },
+      "Orientacao5": { "cor": "gray", "corTexto": "#FFFFFF", "grau": 0, "divisores": 42, "diametroOrbita": 140 * fator, "diametro": 0 * fator, "grauPorDia": 0, "grauBase": 0 },
+      "Vênus": { "cor": "#CF9311", "corTexto": "#FFFFFF", "grau": 60, "divisores": 48, "diametroOrbita": 160 * fator, "diametro": 0.87 * fator, "grauPorDia": 1.60, "grauBase": 60 },
+      "Orientacao6": { "cor": "gray", "corTexto": "#FFFFFF", "grau": 0, "divisores": 54, "diametroOrbita": 180 * fator, "diametro": 0 * fator, "grauPorDia": 0, "grauBase": 0 },
+      "Terra": { "cor": "#0274FF", "corTexto": "#FFFFFF", "grau": 300, "divisores": 60, "diametroOrbita": 200 * fator, "diametro": 0.90 * fator, "grauPorDia": 0.99, "grauBase": 300 },
+      "Orientacao7": { "cor": "gray", "corTexto": "#FFFFFF", "grau": 0, "divisores": 66, "diametroOrbita": 220 * fator, "diametro": 0 * fator, "grauPorDia": 0, "grauBase": 0 },
+      "Marte": { "cor": "#FD4902", "corTexto": "#FFFFFF", "grau": 60, "divisores": 72, "diametroOrbita": 240 * fator, "diametro": 0.65 * fator, "grauPorDia": 0.52, "grauBase": 60 },
+      "Orientacao8": { "cor": "gray", "corTexto": "#FFFFFF", "grau": 0, "divisores": 78, "diametroOrbita": 260 * fator, "diametro": 0 * fator, "grauPorDia": 0, "grauBase": 0 },
+      "Orientacao9": { "cor": "gray", "corTexto": "#FFFFFF", "grau": 0, "divisores": 84, "diametroOrbita": 280 * fator, "diametro": 0 * fator, "grauPorDia": 0, "grauBase": 0 },
+      "Orientacao10": { "cor": "gray", "corTexto": "#FFFFFF", "grau": 0, "divisores": 90, "diametroOrbita": 300 * fator, "diametro": 0 * fator, "grauPorDia": 0, "grauBase": 0 },
+      
+      "Vesta": { "cor": "lightGray", "corTexto": "#FFFFFF", "grau": 300, "divisores": 96, "diametroOrbita": 320 * fator, "diametro": 0.18 * fator, "grauPorDia": 0.214, "grauBase": 300 },
+      "Orientacao Cinturão de Asteroides": { "cor": "gray", "corTexto": "#FFFFFF", "grau": 330, "divisores": 96, "diametroOrbita": 320 * fator, "diametro": 0 * fator, "grauPorDia": 0, "grauBase": 0 },
+      "Pallas": { "cor": "lightGray", "corTexto": "#FFFFFF", "grau": 210, "divisores": 96, "diametroOrbita": 320 * fator, "diametro": 0.18 * fator, "grauPorDia": 0.214, "grauBase": 210 },
+      "Ceres": { "cor": "lightGray", "corTexto": "#FFFFFF", "grau": 120, "divisores": 96, "diametroOrbita": 320 * fator, "diametro": 0.24 * fator, "grauPorDia": 0.214, "grauBase": 120 },
+    };
+
+
+
+    const chaves = Object.keys(astros);
+    const primeiraChave = chaves[0];
+    const primary = astros[primeiraChave];
+
+    delete astros[primeiraChave];
+    orbits = astros;
+
+    json = { name: "", fator, primary, orbits }
+    console.log(JSON.stringify(json)); _
+
+
+  </script>
+</body>
+
+</html>
