@@ -6,10 +6,15 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <link rel="icon" type="image/png" href="icon.png" />    
+    <link rel="icon" type="image/png" href="icon.png" />
     <style>
+        body {
+            background-color: black;
+        }
+
         #map {
             height: 95vh;
+            background-color: black;
         }
 
         .navbar {
@@ -70,7 +75,7 @@
                 var day = lastSaturday.slice(8, 10);
                 var imageUrl = `${dataImage}Resources/${dataImage}-${day}_${month}_${parseInt(year) + 200}.png`;
             } else {
-                var imageUrl = `${dataImage}.png`; 
+                var imageUrl = `${dataImage}.png`;
             }
 
             var imageBounds = [[0, 0], [8640, 8640]]; // ajusta a altura e largura da imagem
