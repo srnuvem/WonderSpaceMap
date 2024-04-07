@@ -34,27 +34,27 @@ function drawBody(ctx, canvas, orbit) {
 
     const { diametroOrbita, cor, grau, diametro, corTexto } = orbit;
 
-    const raioOrbita = diametroOrbita / 8;
+    const raioOrbita = diametroOrbita * 25 / 8;
     const x = canvas.width / 2 + raioOrbita * Math.cos((grau - 90) * (Math.PI / 180));
     const y = canvas.height / 2 + raioOrbita * Math.sin((grau - 90) * (Math.PI / 180));
 
     ctx.fillStyle = cor;
     ctx.beginPath();
-    ctx.arc(x, y, diametro, 0, 2 * Math.PI);
+    ctx.arc(x, y, diametro * 25, 0, 2 * Math.PI);
     ctx.fill();
 
     ctx.fillStyle = corTexto;
     ctx.font = "12px Arial";
     ctx.textAlign = "center";
     ctx.textBaseline = "bottom";
-    ctx.fillText(orbit.name, x, y - 1);
+    ctx.fillText(orbit.name, x, y - 1 * 25);
     
 }
 
 function drawGuideLine(ctx, canvas, orbit) {
     const { diametroOrbita, cor, grau } = orbit;
 
-    const raioOrbita = diametroOrbita / 8;
+    const raioOrbita = diametroOrbita * 25 / 8;
     const x = canvas.width / 2 + raioOrbita * Math.cos((grau - 90) * (Math.PI / 180));
     const y = canvas.height / 2 + raioOrbita * Math.sin((grau - 90) * (Math.PI / 180));
 
@@ -79,7 +79,7 @@ function drawMarkers(ctx, canvas, orbit) {
       const lineSize = 4;
       const midSize = lineSize / 2;
   
-      const raioOrbita = diametroOrbita / 8;
+      const raioOrbita = diametroOrbita * 25 / 8;
       const x = canvas.width / 2 + raioOrbita * Math.cos((grau - 90) * (Math.PI / 180));
       const y = canvas.height / 2 + raioOrbita * Math.sin((grau - 90) * (Math.PI / 180));
   
@@ -104,7 +104,7 @@ function drawMarkers(ctx, canvas, orbit) {
 function drawAsteroids(ctx, canvas, orbit) {
     const numAsteroids = 4000; // Número de asteroides a serem desenhados
     const asteroidSize = 27 / 16
-    const raioBelt = orbit.diametroOrbita / 8; // Raio da órbita
+    const raioBelt = orbit.diametroOrbita * 25 / 8; // Raio da órbita
     if (raioBelt) {
 
         const cor = orbit.cor; // Cor dos asteroides
@@ -115,7 +115,7 @@ function drawAsteroids(ctx, canvas, orbit) {
         for (let i = 0; i < numAsteroids; i++) {
             // Gerar uma posição aleatória ao longo da órbita
             const angulo = Math.random() * 360;
-            const raioVariacao = Math.random() * 27; // Variacao aleatoria de até 5 pixels para cima ou para baixo
+            const raioVariacao = Math.random() * 25; // Variacao aleatoria de até 5 pixels para cima ou para baixo
             const raioFinal = raioBelt + raioVariacao - 27 / 2;
             const x = canvas.width / 2 + raioFinal * Math.cos((angulo - 90) * (Math.PI / 180));
             const y = canvas.height / 2 + raioFinal * Math.sin((angulo - 90) * (Math.PI / 180));
@@ -131,14 +131,14 @@ function drawPrimary(ctx, canvas, primary) {
 
     ctx.fillStyle = cor;
     ctx.beginPath();
-    ctx.arc(canvas.width / 2, canvas.height / 2, diametro, 0, 2 * Math.PI);
+    ctx.arc(canvas.width / 2, canvas.height / 2, diametro * 25, 0, 2 * Math.PI);
     ctx.fill();
 
     ctx.fillStyle = "black";
     ctx.font = "84px Arial";
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
-    ctx.fillText("Sol", canvas.width / 2, canvas.height / 2
+    ctx.fillText(primary.name, canvas.width / 2, canvas.height / 2
     );
 }
 
@@ -154,7 +154,7 @@ export function draw(ctx, canvas, orbits, primary) {
     
     for (const orbit in orbits) {
         drawGuideLine(ctx, canvas, orbits[orbit])
-        if (orbit.diametro !== 0) {
+        if (parseInt(orbit.diametro) != 0) {
             drawBody(ctx, canvas, orbits[orbit]);
         }
         drawMarkers(ctx, canvas, orbits[orbit]);
