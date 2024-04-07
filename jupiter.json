@@ -1,0 +1,90 @@
+{
+    "name": "",
+    "fator": 0,
+    "orbits": {
+        "Jupiter": {
+            "cor": "#FFCF54",
+            "grau": 0,
+            "divisores": 0,
+            "diametroOrbita": 0,
+            "diametro": 0
+        },
+        "Orientacao1": {
+            "cor": "gray",
+            "grau": 0,
+            "divisores": 6,
+            "diametroOrbita": 0,
+            "diametro": 0
+        },
+        "Almateia": {
+            "cor": "#878787",
+            "grau": 0,
+            "divisores": 12,
+            "diametroOrbita": 0,
+            "diametro": 0
+        },
+        "Orientacao2": {
+            "cor": "gray",
+            "grau": 0,
+            "divisores": 18,
+            "diametroOrbita": 0,
+            "diametro": 0
+        },
+        "Orientacao3": {
+            "cor": "gray",
+            "grau": 0,
+            "divisores": 24,
+            "diametroOrbita": 0,
+            "diametro": 0
+        },
+        "Io": {
+            "cor": "#F9F290",
+            "grau": 12,
+            "divisores": 30,
+            "diametroOrbita": 0,
+            "diametro": 0
+        },
+        "Europa": {
+            "cor": "#75341A",
+            "grau": 24,
+            "divisores": 36,
+            "diametroOrbita": 0,
+            "diametro": 0
+        },
+        "Orientacao4": {
+            "cor": "gray",
+            "grau": 0,
+            "divisores": 42,
+            "diametroOrbita": 0,
+            "diametro": 0
+        },
+        "Ganimedes": {
+            "cor": "#B8B0A0",
+            "grau": 48,
+            "divisores": 48,
+            "diametroOrbita": 0,
+            "diametro": 0
+        },
+        "Orientacao5": {
+            "cor": "gray",
+            "grau": 0,
+            "divisores": 54,
+            "diametroOrbita": 0,
+            "diametro": 0
+        },
+        "Orientacao6": {
+            "cor": "gray",
+            "grau": 0,
+            "divisores": 60,
+            "diametroOrbita": 0,
+            "diametro": 0
+        },
+        "Calisto": {
+            "cor": "#45655B",
+            "grau": 96,
+            "divisores": 66,
+            "diametroOrbita": 0,
+            "diametro": 0
+        }
+    }
+}

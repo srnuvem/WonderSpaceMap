@@ -4,29 +4,36 @@
         align-items: center;
         height: 100vh;
         margin: 0;
+        background-color: black;
+
     }
 
-    canvas {
-        display: block;
-        margin: auto;
-        border: 1px solid black;
+    #map {
+        height: 95vh;
+        background-color: black;
     }
 
-    button {
-        display: inline;
-        margin: 10px auto;
-        width: 1000px;
-        height: 200px;
-        font-size: 67px;
+    .navbar {
+        display: flex;
+        justify-content: space-around;
+        background-color: #333;
+        color: white;
+        padding: 10px 0;
     }
 
-    #dateInput {
-        width: 1000px;
-        height: 200px;
-        font-size: 67px;
+    .navbar-item {
+        cursor: pointer;
+    }
+
+    .navbar-item:hover {
+        text-decoration: underline;
+    }
+
+    #myCanvas {
+        display: none;
     }
 
     #dateSlider {
-        width: 4000px;
+        width: 600px;
         height: 24px;
     }

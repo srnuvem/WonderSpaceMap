@@ -150,7 +150,6 @@ export function draw(ctx, canvas, orbits, primary) {
 
     drawAsteroids(ctx, canvas, orbits["Asteroid Belt"]);
     drawAsteroids(ctx, canvas, orbits["Kuiper Belt"]);
-    console.log(orbits)
     
     for (const orbit in orbits) {
         drawGuideLine(ctx, canvas, orbits[orbit])

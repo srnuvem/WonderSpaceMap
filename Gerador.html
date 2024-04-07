@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Mapas WonderSpace</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel="stylesheet" type="text/css" href="styles.css">
+
+  <link rel="icon" type="image/png" href="icon.png" />
+</head>
+
+<body>
+  <div class="navbar">
+    <div class="navbar-item" data-json="innerSun">Sol Interior</div>
+    <div class="navbar-item" data-json="earth">Terra</div>
+    <div class="navbar-item" data-json="mars">Marte</div>
+    <div class="navbar-item" data-json="jupiter">Jupiter</div>
+    <div class="navbar-item" data-json="sun">Sol</div>
+  </div>
+  <div style="display: block;">
+    <input type="text" id="dateInput" class="date-input" placeholder="Digite a data (dd/mm/yyyy)">
+    <button id="saveButton">Salvar Imagem</button>
+  </div>
+  <input type="range" id="dateSlider" min="0" max="52" value="0" step="1">
+  <div id="map"></div>
+  <canvas id="myCanvas" width="8640" height="8640"></canvas>
+  <script src="drawSystem.js" type="module"></script>
+  <script src="script.js" type="module"></script>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+</body>
+
+</html>
