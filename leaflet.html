@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Mapa com Leaflet</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        #map {
+            height: 100vh;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        var map = L.map('map', {
+            crs: L.CRS.Simple,
+            minZoom: -5 // ajusta o zoom inicial, se necessário
+        });
+
+        function getLastSaturday() {
+            var today = new Date();
+            if (today < new Date(2024, 5, 8)) {
+                today = new Date(2024, 5, 8);
+            }
+            var day = today.getDay();
+            var diff = today.getDate() - day + (day === 0 ? -6 : (day > 6 ? 6 : -1)); // ajuste para obter o último sábado
+            return new Date(today.setDate(diff)).toISOString().split('T')[0];
+        }
+
+
+        // Obtém a data do último sábado
+        var lastSaturday = getLastSaturday();
+        var year = lastSaturday.slice(0, 4);
+        var month = lastSaturday.slice(5, 7);
+        var day = lastSaturday.slice(8, 10);
+
+        // Cria a URL da imagem com base no ano, mês e dia
+        var imageUrl = `SolGenResources/Sol-${day}_${month}_${parseInt(year) + 200}.png`;
+        console.log(imageUrl)
+        var imageBounds = [[0, 0], [8640, 8640]]; // ajusta a altura e largura da imagem
+        L.imageOverlay(imageUrl, imageBounds).addTo(map);
+
+        // ajusta o tamanho do mapa para a imagem
+        map.setMaxBounds(imageBounds);
+
+        // Define a posição central da imagem e o zoom inicial
+        map.setView([4320, 4320], -1); // Define o zoom inicial como -1 e a posição central
+
+        // Adiciona um marcador ao centro da imagem
+        var marker = L.marker([4000, 4320]).addTo(map);
+    </script>
+</body>
+
+</html>

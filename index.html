@@ -1,196 +1,110 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>Wonder Space Maps</title>
+    <title>Mapa com Leaflet</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <style>
-        html, body {
-            height: 100%;
-            margin: 0;
-            padding: 0px;
-            overflow: hidden;
+        #map {
+            height: 95vh;
         }
-        #canvas {
-            width: 100%;
-            height: 100%;
-            background: #111;
-        }
+
         .navbar {
             display: flex;
-            justify-content: space-between;
+            justify-content: space-around;
             background-color: #333;
-            padding: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            z-index: 1;
-        }
-        .navbar-item {
             color: white;
-            padding: 5px 10px;
+            padding: 10px 0;
+        }
+
+        .navbar-item {
             cursor: pointer;
+        }
+
+        .navbar-item:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
+
 <body>
     <div class="navbar">
-        <div class="navbar-item" id="solInterior">Sistema Solar Interior</div>
-        <div class="navbar-item" id="terra">Sistema Terra</div>
-        <div class="navbar-item" id="marte">Sistema Marte</div>
-        <div class="navbar-item" id="jupiter">Sistema Jupiter</div>
-        <div class="navbar-item" id="sol">Sistema Solar Completo</div>
+        <div class="navbar-item" data-image="SolInterior">Sistema Solar Interior</div>
+        <div class="navbar-item" data-image="Terra">Sistema Terra</div>
+        <div class="navbar-item" data-image="Marte">Sistema Marte</div>
+        <div class="navbar-item" data-image="Jupiter">Sistema Jupiter</div>
+        <div class="navbar-item" data-image="Sol">Sistema Solar Completo</div>
     </div>
-    <canvas id="canvas"></canvas>
-    <img id="solInteriorImg" src="SolInterior.png" style="display: none;">
-    <img id="terraImg" src="Terra.png" style="display: none;">
-    <img id="marteImg" src="Marte.png" style="display: none;">
-    <img id="jupiterImg" src="Jupiter.png" style="display: none;">
-    <img id="solImg" src="Sol.png" style="display: none;">
+
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
-        let canvas = document.getElementById("canvas")
-        let ctx = canvas.getContext('2d')
-        
-        let cameraOffset = { x: window.innerWidth/2, y: window.innerHeight/2 }
-        let cameraZoom = 1
-        let MAX_ZOOM = 50
-        let MIN_ZOOM = 1
-        let SCROLL_SENSITIVITY = 0.005
-        
-        let solInteriorImg = document.getElementById('solInteriorImg');
-        let terraImg = document.getElementById('terraImg');
-        let marteImg = document.getElementById('marteImg');
-        let jupiterImg = document.getElementById('jupiterImg');
-        let solImg = document.getElementById('solImg');
-        
-        let currentImage = solInteriorImg; // Imagem atualmente renderizada
-        
-        function draw() {
-            canvas.width = window.innerWidth
-            canvas.height = window.innerHeight
-            
-            ctx.translate(window.innerWidth / 2, window.innerHeight / 2)
-            ctx.scale(cameraZoom, cameraZoom)
-            ctx.translate(-window.innerWidth / 2 + cameraOffset.x, -window.innerHeight / 2 + cameraOffset.y)
-            ctx.clearRect(0,0, window.innerWidth, window.innerHeight)
-            
-            ctx.drawImage(currentImage, -500, -500, 1000, 1000); // Desenha a imagem atual
-            
-            
-            requestAnimationFrame(draw)
-        }
-        
-        function getEventLocation(e) {
-            if (e.touches && e.touches.length == 1) {
-                return { x:e.touches[0].clientX, y: e.touches[0].clientY }
-            } else if (e.clientX && e.clientY) {
-                return { x: e.clientX, y: e.clientY }        
+        var map = L.map('map', {
+            crs: L.CRS.Simple,
+            minZoom: -5 // ajusta o zoom inicial, se necessário
+        });
+
+        function getLastSaturday() {
+            var today = new Date();
+            if (today < new Date(2024, 5, 8)) {
+                today = new Date(2024, 5, 8);
             }
+            var day = today.getDay();
+            var diff = today.getDate() - day + (day === 0 ? -6 : (day > 6 ? 6 : -1)); // ajuste para obter o último sábado
+            return new Date(today.setDate(diff)).toISOString().split('T')[0];
         }
-        
-        function drawRect(x, y, width, height) {
-            ctx.fillRect(x, y, width, height)
-        }
-        
-        function drawText(text, x, y, size, font) {
-            ctx.font = `${size}px ${font}`
-            ctx.fillText(text, x, y)
-        }
-        
-        let isDragging = false
-        let dragStart = { x: 0, y: 0 }
-        
-        function onPointerDown(e) {
-            isDragging = true
-            dragStart.x = getEventLocation(e).x/cameraZoom - cameraOffset.x
-            dragStart.y = getEventLocation(e).y/cameraZoom - cameraOffset.y
-        }
-        
-        function onPointerUp(e) {
-            isDragging = false
-            initialPinchDistance = null
-            lastZoom = cameraZoom
-        }
-        
-        function onPointerMove(e) {
-            if (isDragging) {
-                cameraOffset.x = getEventLocation(e).x/cameraZoom - dragStart.x
-                cameraOffset.y = getEventLocation(e).y/cameraZoom - dragStart.y
-            }
-        }
-        
-        function handleTouch(e, singleTouchHandler) {
-            if (e.touches.length == 1) {
-                singleTouchHandler(e)
-            } else if (e.type == "touchmove" && e.touches.length == 2) {
-                isDragging = false
-                handlePinch(e)
-            }
-        }
-        
-        let initialPinchDistance = null
-        let lastZoom = cameraZoom
-        
-        function handlePinch(e) {
-            e.preventDefault()
-            
-            let touch1 = { x: e.touches[0].clientX, y: e.touches[0].clientY }
-            let touch2 = { x: e.touches[1].clientX, y: e.touches[1].clientY }
-            
-            let currentDistance = (touch1.x - touch2.x)**2 + (touch1.y - touch2.y)**2
-            
-            if (initialPinchDistance == null) {
-                initialPinchDistance = currentDistance
+
+        // Função para atualizar a imagem com base na opção selecionada
+        function updateImage(event) {
+            var target = event.target;
+            var dataImage = target.getAttribute('data-image');
+
+            if (dataImage.includes('Sol')) {
+                var lastSaturday = getLastSaturday();
+                var year = lastSaturday.slice(0, 4);
+                var month = lastSaturday.slice(5, 7);
+                var day = lastSaturday.slice(8, 10);
+                var imageUrl = `${dataImage}Resources/${dataImage}-${day}_${month}_${parseInt(year) + 200}.png`;
+                console.log(imageUrl)
             } else {
-                adjustZoom(null, currentDistance/initialPinchDistance)
+                var imageUrl = `${dataImage}.png`; 
             }
-        }
-        
-        function adjustZoom(zoomAmount, zoomFactor) {
-            if (!isDragging) {
-                if (zoomAmount) {
-                    cameraZoom += zoomAmount
-                } else if (zoomFactor) {
-                    cameraZoom = zoomFactor*lastZoom
+
+            var imageBounds = [[0, 0], [8640, 8640]]; // ajusta a altura e largura da imagem
+            map.eachLayer(function (layer) {
+                if (layer instanceof L.ImageOverlay) {
+                    map.removeLayer(layer);
                 }
-                
-                cameraZoom = Math.min(cameraZoom, MAX_ZOOM)
-                cameraZoom = Math.max(cameraZoom, MIN_ZOOM)
-            }
+            });
+            L.imageOverlay(imageUrl, imageBounds).addTo(map);
+            map.setMaxBounds(imageBounds);
+            map.setView([4320, 4320], -1);
         }
-        
-        function resetZoomAndPosition() {
-            cameraZoom = 1
-            cameraOffset = { x: window.innerWidth/2, y: window.innerHeight/2 }
-        }
-        
-        canvas.addEventListener('mousedown', onPointerDown)
-        canvas.addEventListener('touchstart', (e) => handleTouch(e, onPointerDown))
-        canvas.addEventListener('mouseup', onPointerUp)
-        canvas.addEventListener('touchend', (e) => handleTouch(e, onPointerUp))
-        canvas.addEventListener('mousemove', onPointerMove)
-        canvas.addEventListener('touchmove', (e) => handleTouch(e, onPointerMove))
-        canvas.addEventListener('wheel', (e) => adjustZoom(-e.deltaY*SCROLL_SENSITIVITY))
-        
-        // Adiciona eventos de clique para cada item da navbar
-        document.getElementById('solInterior').addEventListener('click', () => {
-            currentImage = solInteriorImg;
-            resetZoomAndPosition();
+
+        // Adiciona evento de clique a cada item da navbar
+        var navbarItems = document.querySelectorAll('.navbar-item');
+        navbarItems.forEach(function (item) {
+            item.addEventListener('click', updateImage);
         });
-        document.getElementById('terra').addEventListener('click', () => {
-            currentImage = terraImg;
-            resetZoomAndPosition();
-        });
-        document.getElementById('marte').addEventListener('click', () => {
-            currentImage = marteImg;
-            resetZoomAndPosition();
-        });
-        document.getElementById('jupiter').addEventListener('click', () => {
-            currentImage = jupiterImg;
-            resetZoomAndPosition();
-        });
-        document.getElementById('sol').addEventListener('click', () => {
-            currentImage = solImg;
-            resetZoomAndPosition();
-        });
-        
-        draw()
+
+        // Define a imagem inicial
+        var lastSaturday = getLastSaturday();
+        var year = lastSaturday.slice(0, 4);
+        var month = lastSaturday.slice(5, 7);
+        var day = lastSaturday.slice(8, 10);
+        var imageUrl = `SolGenResources/Sol-${day}_${month}_${parseInt(year) + 200}.png`;
+        var imageBounds = [[0, 0], [8640, 8640]];
+        L.imageOverlay(imageUrl, imageBounds).addTo(map);
+        map.setMaxBounds(imageBounds);
+        map.setView([4320, 4320], -1);
+
+        // Define a imagem inicial como "Sistema Solar Interior"
+        var defaultImage = document.querySelector('.navbar-item[data-image="SolInterior"]');
+        updateImage({ target: defaultImage });
     </script>
 </body>
+
 </html>
