@@ -1,194 +1,191 @@
 {
-    "name": "",
-    "fator": 0,
+    "name": "Sistema Solar",
+    "fator": 25,
     "primary": {
+        "name": "Sol",
         "cor": "#FFB703",
         "corTexto": "#FFFFFF",
         "grau": 0,
         "divisores": 0,
-        "diametroOrbita": 0,
-        "diametro": 0,
+        "diametroOrbita": 9.36,
+        "diametro": 10,
         "grauPorDia": 0,
         "grauBase": 0
     },
     "orbits": {
-        "Orientacao1": {
+        "GuideLine1": {
+            "name": "",
             "cor": "gray",
             "corTexto": "#FFFFFF",
             "grau": 0,
             "divisores": 12,
-            "diametroOrbita": 0,
+            "diametroOrbita": 40,
             "diametro": 0,
             "grauPorDia": 0,
             "grauBase": 0
         },
-        "Orientacao2": {
+        "GuideLine2": {
+            "name": "",
             "cor": "gray",
             "corTexto": "#FFFFFF",
             "grau": 0,
             "divisores": 18,
-            "diametroOrbita": 0,
+            "diametroOrbita": 60,
             "diametro": 0,
             "grauPorDia": 0,
             "grauBase": 0
         },
-        "Orientacao3": {
+        "GuideLine3": {
+            "name": "",
             "cor": "gray",
             "corTexto": "#FFFFFF",
             "grau": 0,
             "divisores": 24,
-            "diametroOrbita": 0,
+            "diametroOrbita": 80,
             "diametro": 0,
             "grauPorDia": 0,
             "grauBase": 0
         },
-        "Orientacao4": {
+        "GuideLine4": {
+            "name": "",
             "cor": "gray",
             "corTexto": "#FFFFFF",
             "grau": 0,
             "divisores": 30,
-            "diametroOrbita": 0,
+            "diametroOrbita": 100,
             "diametro": 0,
             "grauPorDia": 0,
             "grauBase": 0
         },
-        "Mercúrio": {
+        "Mercury": {
+            "name": "Mercúrio",
             "cor": "#FF8D02",
             "corTexto": "#FFFFFF",
             "grau": 0,
             "divisores": 36,
-            "diametroOrbita": 0,
-            "diametro": 0,
+            "diametroOrbita": 120,
+            "diametro": 0.55,
             "grauPorDia": 4.09,
             "grauBase": 0
         },
-        "Orientacao5": {
+        "GuideLine5": {
+            "name": "",
             "cor": "gray",
             "corTexto": "#FFFFFF",
             "grau": 0,
             "divisores": 42,
-            "diametroOrbita": 0,
+            "diametroOrbita": 140,
             "diametro": 0,
             "grauPorDia": 0,
             "grauBase": 0
         },
-        "Vênus": {
+        "Venus": {
+            "name": "Vênus",
             "cor": "#CF9311",
             "corTexto": "#FFFFFF",
             "grau": 60,
             "divisores": 48,
-            "diametroOrbita": 0,
-            "diametro": 0,
+            "diametroOrbita": 160,
+            "diametro": 0.87,
             "grauPorDia": 1.6,
             "grauBase": 60
         },
-        "Orientacao6": {
+        "GuideLine6": {
+            "name": "",
             "cor": "gray",
             "corTexto": "#FFFFFF",
             "grau": 0,
             "divisores": 54,
-            "diametroOrbita": 0,
+            "diametroOrbita": 180,
             "diametro": 0,
             "grauPorDia": 0,
             "grauBase": 0
         },
-        "Terra": {
+        "Earth": {
+            "name": "Terra",
             "cor": "#0274FF",
             "corTexto": "#FFFFFF",
             "grau": 300,
             "divisores": 60,
-            "diametroOrbita": 0,
-            "diametro": 0,
+            "diametroOrbita": 200,
+            "diametro": 0.9,
             "grauPorDia": 0.99,
             "grauBase": 300
         },
-        "Orientacao7": {
+        "GuideLine7": {
+            "name": "",
             "cor": "gray",
             "corTexto": "#FFFFFF",
             "grau": 0,
             "divisores": 66,
-            "diametroOrbita": 0,
+            "diametroOrbita": 220,
             "diametro": 0,
             "grauPorDia": 0,
             "grauBase": 0
         },
-        "Marte": {
+        "Mars": {
+            "name": "Marte",
             "cor": "#FD4902",
             "corTexto": "#FFFFFF",
             "grau": 60,
             "divisores": 72,
-            "diametroOrbita": 0,
-            "diametro": 0,
+            "diametroOrbita": 240,
+            "diametro": 0.65,
             "grauPorDia": 0.52,
             "grauBase": 60
         },
-        "Orientacao8": {
+        "GuideLine8": {
+            "name": "",
             "cor": "gray",
             "corTexto": "#FFFFFF",
             "grau": 0,
-            "divisores": 78,
-            "diametroOrbita": 0,
-            "diametro": 0,
-            "grauPorDia": 0,
-            "grauBase": 0
-        },
-        "Orientacao9": {
-            "cor": "gray",
-            "corTexto": "#FFFFFF",
-            "grau": 0,
-            "divisores": 84,
-            "diametroOrbita": 0,
-            "diametro": 0,
-            "grauPorDia": 0,
-            "grauBase": 0
-        },
-        "Orientacao10": {
-            "cor": "gray",
-            "corTexto": "#FFFFFF",
-            "grau": 0,
-            "divisores": 90,
-            "diametroOrbita": 0,
+            "divisores": 42,
+            "diametroOrbita": 280,
             "diametro": 0,
             "grauPorDia": 0,
             "grauBase": 0
         },
         "Vesta": {
-            "cor": "lightGray",
+            "name": "Vesta",
+            "cor": "lightgray",
             "corTexto": "#FFFFFF",
             "grau": 300,
-            "divisores": 96,
-            "diametroOrbita": 0,
-            "diametro": 0,
+            "divisores": 48,
+            "diametroOrbita": 320,
+            "diametro": 0.18,
             "grauPorDia": 0.214,
             "grauBase": 300
         },
-        "Orientacao Cinturão de Asteroides": {
+        "Asteroid Belt": {
+            "name": "Cinturão de Asteroides",
             "cor": "gray",
             "corTexto": "#FFFFFF",
-            "grau": 330,
-            "divisores": 96,
-            "diametroOrbita": 0,
+            "grau": 0,
+            "divisores": 48,
+            "diametroOrbita": 320,
             "diametro": 0,
             "grauPorDia": 0,
             "grauBase": 0
         },
         "Pallas": {
-            "cor": "lightGray",
+            "name": "Pallas",
+            "cor": "lightgray",
             "corTexto": "#FFFFFF",
             "grau": 210,
-            "divisores": 96,
-            "diametroOrbita": 0,
-            "diametro": 0,
+            "divisores": 48,
+            "diametroOrbita": 320,
+            "diametro": 0.18,
             "grauPorDia": 0.214,
             "grauBase": 210
         },
         "Ceres": {
-            "cor": "lightGray",
+            "name": "Ceres",
+            "cor": "lightgray",
             "corTexto": "#FFFFFF",
             "grau": 120,
-            "divisores": 96,
-            "diametroOrbita": 0,
-            "diametro": 0,
+            "divisores": 48,
+            "diametroOrbita": 320,
+            "diametro": 0.24,
             "grauPorDia": 0.214,
             "grauBase": 120
         }

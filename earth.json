@@ -3,7 +3,7 @@
     "fator": 0,
     "primary": {
         "name": "",
-        "cor": "#FFCF54",
+        "cor": "#0274FF",
         "corTexto": "#FFFFFF",
         "grau": 0,
         "divisores": 0,
@@ -13,122 +13,12 @@
         "grauBase": 0
     },
     "orbits": {
-        "Orientacao1": {
+        "Lua": {
             "name": "",
-            "cor": "gray",
+            "cor": "White",
             "corTexto": "#FFFFFF",
-            "grau": 0,
-            "divisores": 6,
-            "diametroOrbita": 0,
-            "diametro": 0,
-            "grauPorDia": 0,
-            "grauBase": 0
-        },
-        "Almateia": {
-            "name": "",
-            "cor": "#878787",
-            "corTexto": "#FFFFFF",
-            "grau": 0,
-            "divisores": 12,
-            "diametroOrbita": 0,
-            "diametro": 0,
-            "grauPorDia": 0,
-            "grauBase": 0
-        },
-        "Orientacao2": {
-            "name": "",
-            "cor": "gray",
-            "corTexto": "#FFFFFF",
-            "grau": 0,
-            "divisores": 18,
-            "diametroOrbita": 0,
-            "diametro": 0,
-            "grauPorDia": 0,
-            "grauBase": 0
-        },
-        "Orientacao3": {
-            "name": "",
-            "cor": "gray",
-            "corTexto": "#FFFFFF",
-            "grau": 0,
-            "divisores": 24,
-            "diametroOrbita": 0,
-            "diametro": 0,
-            "grauPorDia": 0,
-            "grauBase": 0
-        },
-        "Io": {
-            "name": "",
-            "cor": "#F9F290",
-            "corTexto": "#FFFFFF",
-            "grau": 12,
-            "divisores": 30,
-            "diametroOrbita": 0,
-            "diametro": 0,
-            "grauPorDia": 0,
-            "grauBase": 0
-        },
-        "Europa": {
-            "name": "",
-            "cor": "#75341A",
-            "corTexto": "#FFFFFF",
-            "grau": 24,
-            "divisores": 36,
-            "diametroOrbita": 0,
-            "diametro": 0,
-            "grauPorDia": 0,
-            "grauBase": 0
-        },
-        "Orientacao4": {
-            "name": "",
-            "cor": "gray",
-            "corTexto": "#FFFFFF",
-            "grau": 0,
-            "divisores": 42,
-            "diametroOrbita": 0,
-            "diametro": 0,
-            "grauPorDia": 0,
-            "grauBase": 0
-        },
-        "Ganimedes": {
-            "name": "",
-            "cor": "#B8B0A0",
-            "corTexto": "#FFFFFF",
-            "grau": 48,
-            "divisores": 48,
-            "diametroOrbita": 0,
-            "diametro": 0,
-            "grauPorDia": 0,
-            "grauBase": 0
-        },
-        "Orientacao5": {
-            "name": "",
-            "cor": "gray",
-            "corTexto": "#FFFFFF",
-            "grau": 0,
-            "divisores": 54,
-            "diametroOrbita": 0,
-            "diametro": 0,
-            "grauPorDia": 0,
-            "grauBase": 0
-        },
-        "Orientacao6": {
-            "name": "",
-            "cor": "gray",
-            "corTexto": "#FFFFFF",
-            "grau": 0,
-            "divisores": 60,
-            "diametroOrbita": 0,
-            "diametro": 0,
-            "grauPorDia": 0,
-            "grauBase": 0
-        },
-        "Calisto": {
-            "name": "",
-            "cor": "#45655B",
-            "corTexto": "#FFFFFF",
-            "grau": 96,
-            "divisores": 66,
+            "grau": 240,
+            "divisores": 3,
             "diametroOrbita": 0,
             "diametro": 0,
             "grauPorDia": 0,
