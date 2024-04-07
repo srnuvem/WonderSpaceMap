@@ -1,0 +1,32 @@
+    body {
+        display: block;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    canvas {
+        display: block;
+        margin: auto;
+        border: 1px solid black;
+    }
+
+    button {
+        display: inline;
+        margin: 10px auto;
+        width: 1000px;
+        height: 200px;
+        font-size: 67px;
+    }
+
+    #dateInput {
+        width: 1000px;
+        height: 200px;
+        font-size: 67px;
+    }
+
+    #dateSlider {
+        width: 4000px;
+        height: 24px;
+    }
