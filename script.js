@@ -13,7 +13,7 @@ var map = L.map('map', {
     minZoom: -3 // ajusta o zoom inicial, se necessário
 });
 
-updateImage(ctx, canvas, systemData.orbits, systemData.primary)
+updateImage(ctx, canvas, systemData)
 
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -30,14 +30,14 @@ document.querySelectorAll('.navbar-item').forEach(item => {
     item.addEventListener('click', async function () {
         selectedJson = this.getAttribute('data-json');
         await updateSystemData(selectedJson);
-        updateImage(ctx, canvas, systemData.orbits, systemData.primary);
+        updateImage(ctx, canvas, systemData);
     });
 });
 
 async function getSystemData(selectedJson) {
     let systemData = {}
 
-    await fetch(`${selectedJson}.json`)
+    await fetch(`json/${selectedJson}.json`)
         .then(response => response.json())
         .then(data => {
             systemData = data
@@ -97,15 +97,14 @@ async function updatePositions(dateText) {
     }
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    updateImage(ctx, canvas, systemData.orbits, systemData.primary);
+    updateImage(ctx, canvas, systemData);
 }
 
 document.getElementById("saveButton").addEventListener("click", saveImage);
 
 
-// Função para atualizar a imagem com base na opção selecionada
-function updateImage(ctx, canvas, orbits, primary) {
-    draw(ctx, canvas, orbits, primary);
+function updateImage(ctx, canvas, systemData) {
+    draw(ctx, canvas, systemData);
 
     var imageUrl = canvas.toDataURL();
 
@@ -117,5 +116,5 @@ function updateImage(ctx, canvas, orbits, primary) {
     });
     L.imageOverlay(imageUrl, imageBounds).addTo(map);
     map.setMaxBounds(imageBounds);
-    map.setView([4320, 4320], -5);
+    map.setView([4320, 4320], -1);
 }

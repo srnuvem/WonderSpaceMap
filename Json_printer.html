@@ -29,12 +29,12 @@
 
     const canvas = document.getElementById('myCanvas');
     const ctx = canvas.getContext('2d');
-    // const fator = canvas.width / 960
-    const fator = 0;
+    // const scale = canvas.width / 960
+    const scale = 0;
 
     const astros = {
-      "Terra": { "name": "" , cor:"#0274FF","corTexto": "#FFFFFF", grau: 0, divisores: 0, diametroOrbita: 0 * fator, diametro: 0.9 * fator , "grauPorDia": 0, "grauBase": 0},
-      "Lua": { "name": "" , cor:"White","corTexto": "#FFFFFF", grau: 240, divisores: 3, diametroOrbita:  100 * fator, diametro:  0.47* fator , "grauPorDia": 0, "grauBase": 0},
+      "Terra": { "name": "" , cor:"#0274FF","corTexto": "#FFFFFF", grau: 0, divisores: 0, diametroOrbita: 0 * scale, diametro: 0.9 * scale , "grauPorDia": 0, "grauBase": 0},
+      "Lua": { "name": "" , cor:"White","corTexto": "#FFFFFF", grau: 240, divisores: 3, diametroOrbita:  100 * scale, diametro:  0.47* scale , "grauPorDia": 0, "grauBase": 0},
     };
 
 
@@ -46,7 +46,7 @@
     delete astros[primeiraChave];
     orbits = astros;
 
-    json = { name: "", fator, primary, orbits }
+    json = { name: "", scale, primary, orbits }
     console.log(JSON.stringify(json)); _
 
 

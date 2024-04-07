@@ -1,6 +1,7 @@
 {
     "name": "Sistema Solar",
-    "fator": 25,
+    "scale": 3,
+    "bodyScale": 10,
     "primary": {
         "name": "Sol",
         "cor": "#FFB703",
@@ -233,7 +234,7 @@
             "grauPorDia": 0,
             "grauBase": 0
         },
-        "Saturno": {
+        "Saturn": {
             "name": "Saturno",
             "cor": "#FFE9B3",
             "corTexto": "#000000",
@@ -280,7 +281,7 @@
         "Urano": {
             "name": "Urano",
             "cor": "#01AD82",
-            "corTexto": "#000000",
+            "corTexto": "#FFFFFF",
             "grau": 330,
             "divisores": 69,
             "diametroOrbita": 920,

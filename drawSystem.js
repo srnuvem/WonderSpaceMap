@@ -1,6 +1,4 @@
-
-
-function drawHeaderText(ctx, canvas) {
+function drawHeaderText(ctx, canvas, name) {
     ctx.fillStyle = 'white';
     ctx.font = '48px Arial';
     ctx.textAlign = 'right';
@@ -8,7 +6,7 @@ function drawHeaderText(ctx, canvas) {
     ctx.fillText('Wonder Space', canvas.width - 20, 20);
 
     ctx.font = '36px Arial';
-    ctx.fillText('Sistema Solar' + dateInput.value, canvas.width - 20, 80);
+    ctx.fillText(`${name} ${dateInput.value}`, canvas.width - 20, 80);
     ctx.fillText('Marcações:', canvas.width - 300, 180);
     ctx.fillText('10Gh até Marte', canvas.width - 20, 220);
     ctx.fillText('20Gh até Jupiter', canvas.width - 20, 270);
@@ -30,36 +28,36 @@ function drawStars(ctx, canvas) {
 }
 
 
-function drawBody(ctx, canvas, orbit) {
+function drawBody(ctx, canvas, orbit, scale, bodyScale) {
 
     const { diametroOrbita, cor, grau, diametro, corTexto } = orbit;
 
-    const raioOrbita = diametroOrbita * 25 / 8;
+    const raioOrbita = diametroOrbita * scale ;
     const x = canvas.width / 2 + raioOrbita * Math.cos((grau - 90) * (Math.PI / 180));
     const y = canvas.height / 2 + raioOrbita * Math.sin((grau - 90) * (Math.PI / 180));
 
     ctx.fillStyle = cor;
     ctx.beginPath();
-    ctx.arc(x, y, diametro * 25, 0, 2 * Math.PI);
+    ctx.arc(x, y, diametro * scale * bodyScale, 0, 2 * Math.PI);
     ctx.fill();
 
     ctx.fillStyle = corTexto;
-    ctx.font = "12px Arial";
+    ctx.font = `${scale * bodyScale}px Arial`;
     ctx.textAlign = "center";
     ctx.textBaseline = "bottom";
-    ctx.fillText(orbit.name, x, y - 1 * 25);
+    ctx.fillText(orbit.name, x, y - bodyScale * scale);
     
 }
 
-function drawGuideLine(ctx, canvas, orbit) {
+function drawGuideLine(ctx, canvas, orbit, scale) {
     const { diametroOrbita, cor, grau } = orbit;
 
-    const raioOrbita = diametroOrbita * 25 / 8;
+    const raioOrbita = diametroOrbita * scale ;
     const x = canvas.width / 2 + raioOrbita * Math.cos((grau - 90) * (Math.PI / 180));
     const y = canvas.height / 2 + raioOrbita * Math.sin((grau - 90) * (Math.PI / 180));
 
     ctx.strokeStyle = cor;
-    ctx.setLineDash([5, 2]); // 5 é o tamanho do traço, 5 é o espaço entre traços
+    ctx.setLineDash([8, 2]);
     ctx.lineWidth = 1;
 
     ctx.beginPath();
@@ -67,7 +65,7 @@ function drawGuideLine(ctx, canvas, orbit) {
     ctx.stroke();
 }
 
-function drawMarkers(ctx, canvas, orbit) {
+function drawMarkers(ctx, canvas, orbit, scale) {
     const divisores = orbit.divisores;
   
     for (let i = 0; i < divisores; i++) {
@@ -76,10 +74,10 @@ function drawMarkers(ctx, canvas, orbit) {
       const { diametroOrbita, cor } = orbit;
       const grau = angulo;
   
-      const lineSize = 4;
+      const lineSize = 9;
       const midSize = lineSize / 2;
   
-      const raioOrbita = diametroOrbita * 25 / 8;
+      const raioOrbita = diametroOrbita * scale ;
       const x = canvas.width / 2 + raioOrbita * Math.cos((grau - 90) * (Math.PI / 180));
       const y = canvas.height / 2 + raioOrbita * Math.sin((grau - 90) * (Math.PI / 180));
   
@@ -90,7 +88,7 @@ function drawMarkers(ctx, canvas, orbit) {
       const fimY = inicioY + lineSize * Math.sin((grau - 90) * (Math.PI / 180));
   
       ctx.strokeStyle = cor;
-      ctx.setLineDash([]); // 5 é o tamanho do traço, 5 é o espaço entre traços
+      ctx.setLineDash([]);
       ctx.lineWidth = 2;
       ctx.beginPath();
       ctx.moveTo(inicioX, inicioY);
@@ -101,63 +99,63 @@ function drawMarkers(ctx, canvas, orbit) {
 
 
 
-function drawAsteroids(ctx, canvas, orbit) {
-    const numAsteroids = 4000; // Número de asteroides a serem desenhados
-    const asteroidSize = 27 / 16
-    const raioBelt = orbit.diametroOrbita * 25 / 8; // Raio da órbita
+function drawAsteroids(ctx, canvas, orbit, scale) {
+    const numAsteroids = 4000; 
+    const asteroidSize = 2;
+    const raioBelt = orbit?.diametroOrbita * scale ; 
     if (raioBelt) {
 
-        const cor = orbit.cor; // Cor dos asteroides
+        const cor = orbit.cor; 
 
         ctx.fillStyle = cor;
 
 
         for (let i = 0; i < numAsteroids; i++) {
-            // Gerar uma posição aleatória ao longo da órbita
             const angulo = Math.random() * 360;
-            const raioVariacao = Math.random() * 25; // Variacao aleatoria de até 5 pixels para cima ou para baixo
-            const raioFinal = raioBelt + raioVariacao - 27 / 2;
+            const raioVariacao = Math.random() * scale*6;
+            const raioFinal = raioBelt + raioVariacao - scale*6 / 2;
             const x = canvas.width / 2 + raioFinal * Math.cos((angulo - 90) * (Math.PI / 180));
             const y = canvas.height / 2 + raioFinal * Math.sin((angulo - 90) * (Math.PI / 180));
 
-            // Desenhar o asteroide
             ctx.fillRect(x, y, asteroidSize, asteroidSize);
         }
     }
 }
 
-function drawPrimary(ctx, canvas, primary) {
-    const { diametroOrbita, cor, grau, diametro } = primary;
+function drawPrimary(ctx, canvas, primary, scale, bodyScale) {
+    const { cor, diametro } = primary
 
     ctx.fillStyle = cor;
     ctx.beginPath();
-    ctx.arc(canvas.width / 2, canvas.height / 2, diametro * 25, 0, 2 * Math.PI);
+    ctx.arc(canvas.width / 2, canvas.height / 2, diametro * scale * bodyScale, 0, 2 * Math.PI);
     ctx.fill();
 
     ctx.fillStyle = "black";
-    ctx.font = "84px Arial";
+    ctx.font = `${bodyScale * scale * 5 }px Arial`;
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
     ctx.fillText(primary.name, canvas.width / 2, canvas.height / 2
     );
 }
 
-export function draw(ctx, canvas, orbits, primary) {
+export function draw(ctx, canvas, systemData) {
+    const { name, orbits, scale, bodyScale, primary} = systemData;
+
     ctx.fillStyle = 'black';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     drawStars(ctx, canvas);
-    drawHeaderText(ctx, canvas)
+    drawHeaderText(ctx, canvas, name)
 
-    drawAsteroids(ctx, canvas, orbits["Asteroid Belt"]);
-    drawAsteroids(ctx, canvas, orbits["Kuiper Belt"]);
+    drawAsteroids(ctx, canvas, orbits["Asteroid Belt"], scale);
+    drawAsteroids(ctx, canvas, orbits["Kuiper Belt"], scale);
     
     for (const orbit in orbits) {
-        drawGuideLine(ctx, canvas, orbits[orbit])
+        drawGuideLine(ctx, canvas, orbits[orbit], scale)
+        drawMarkers(ctx, canvas, orbits[orbit], scale);
         if (parseInt(orbit.diametro) != 0) {
-            drawBody(ctx, canvas, orbits[orbit]);
+            drawBody(ctx, canvas, orbits[orbit], scale, bodyScale);
         }
-        drawMarkers(ctx, canvas, orbits[orbit]);
 
     }
-    drawPrimary(ctx, canvas, primary);
+    drawPrimary(ctx, canvas, primary, scale, bodyScale);
 }

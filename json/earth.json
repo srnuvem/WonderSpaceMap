@@ -1,9 +1,9 @@
 {
-    "name": "",
-    "fator": 0,
+    "name": "Terra",
+    "scale": 100,
     "primary": {
-        "name": "",
-        "cor": "#FD4902",
+        "name": "Terra",
+        "cor": "#0274FF",
         "corTexto": "#FFFFFF",
         "grau": 0,
         "divisores": 0,
@@ -13,23 +13,12 @@
         "grauBase": 0
     },
     "orbits": {
-        "Phobos": {
-            "name": "",
+        "Lua": {
+            "name": "Lua",
             "cor": "White",
             "corTexto": "#FFFFFF",
-            "grau": 270,
+            "grau": 240,
             "divisores": 3,
-            "diametroOrbita": 0,
-            "diametro": 0,
-            "grauPorDia": 0,
-            "grauBase": 0
-        },
-        "Deimos": {
-            "name": "",
-            "cor": "LightGray",
-            "corTexto": "#FFFFFF",
-            "grau": 90,
-            "divisores": 6,
             "diametroOrbita": 0,
             "diametro": 0,
             "grauPorDia": 0,

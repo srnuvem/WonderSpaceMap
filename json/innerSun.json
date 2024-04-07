@@ -1,6 +1,6 @@
 {
-    "name": "Sistema Solar",
-    "fator": 25,
+    "name": "Sistema Solar Interior",
+    "scale": 75,
     "primary": {
         "name": "Sol",
         "cor": "#FFB703",

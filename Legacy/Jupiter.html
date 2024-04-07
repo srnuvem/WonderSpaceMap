@@ -29,22 +29,22 @@
 
     const canvas = document.getElementById('myCanvas');
     const ctx = canvas.getContext('2d');
-    // const fator = canvas.width / 960
-    const fator = canvas.width / 480 * 8
+    // const scale = canvas.width / 960
+    const scale = canvas.width / 480 * 8
 
     const astros = {
-      "Jupiter": { "name": "" , cor:"#FFCF54","corTexto": "#FFFFFF", grau: 0, divisores: 0, diametroOrbita: 0 * fator, diametro: 2.97 * fator , "grauPorDia": 0, "grauBase": 0},
-      "Orientacao1": { "name": "" , cor:"gray","corTexto": "#FFFFFF", grau: 0, divisores: 6, diametroOrbita: 20 * fator, diametro: 0 * fator , "grauPorDia": 0, "grauBase": 0},
-      "Almateia": { "name": "" , cor:"#878787","corTexto": "#FFFFFF", grau:0, divisores: 12, diametroOrbita: 40 * fator, diametro: 0.13 * fator , "grauPorDia": 0, "grauBase": 0},
-      "Orientacao2": { "name": "" , cor:"gray","corTexto": "#FFFFFF", grau: 0, divisores: 18, diametroOrbita: 60 * fator, diametro: 0 * fator , "grauPorDia": 0, "grauBase": 0},
-      "Orientacao3": { "name": "" , cor:"gray","corTexto": "#FFFFFF", grau: 0, divisores: 24, diametroOrbita: 80 * fator, diametro: 0 * fator , "grauPorDia": 0, "grauBase": 0},
-      "Io": { "name": "" , cor:"#F9F290","corTexto": "#FFFFFF", grau: 12, divisores: 30, diametroOrbita: 100 * fator, diametro: 0.48 * fator , "grauPorDia": 0, "grauBase": 0},
-      "Europa": { "name": "" , cor:"#75341A","corTexto": "#FFFFFF", grau: 24, divisores: 36, diametroOrbita: 120 * fator, diametro: 0.44 * fator , "grauPorDia": 0, "grauBase": 0},
-      "Orientacao4": { "name": "" , cor:"gray","corTexto": "#FFFFFF", grau: 0, divisores: 42, diametroOrbita: 140 * fator, diametro: 0 * fator , "grauPorDia": 0, "grauBase": 0},
-      "Ganimedes": { "name": "" , cor:"#B8B0A0","corTexto": "#FFFFFF", grau: 48, divisores: 48, diametroOrbita: 160 * fator, diametro: 0.58 * fator , "grauPorDia": 0, "grauBase": 0},
-      "Orientacao5": { "name": "" , cor:"gray","corTexto": "#FFFFFF", grau: 0, divisores: 54, diametroOrbita: 180 * fator, diametro: 0 * fator , "grauPorDia": 0, "grauBase": 0},
-      "Orientacao6": { "name": "" , cor:"gray","corTexto": "#FFFFFF", grau: 0, divisores: 60, diametroOrbita: 200 * fator, diametro: 0 * fator , "grauPorDia": 0, "grauBase": 0},
-      "Calisto": { "name": "" , cor:"#45655B","corTexto": "#FFFFFF", grau: 96, divisores: 66, diametroOrbita: 220 * fator, diametro: 0.55 * fator , "grauPorDia": 0, "grauBase": 0},
+      "Jupiter": { "name": "" , cor:"#FFCF54","corTexto": "#FFFFFF", grau: 0, divisores: 0, diametroOrbita: 0 * scale, diametro: 2.97 * scale , "grauPorDia": 0, "grauBase": 0},
+      "Orientacao1": { "name": "" , cor:"gray","corTexto": "#FFFFFF", grau: 0, divisores: 6, diametroOrbita: 20 * scale, diametro: 0 * scale , "grauPorDia": 0, "grauBase": 0},
+      "Almateia": { "name": "" , cor:"#878787","corTexto": "#FFFFFF", grau:0, divisores: 12, diametroOrbita: 40 * scale, diametro: 0.13 * scale , "grauPorDia": 0, "grauBase": 0},
+      "Orientacao2": { "name": "" , cor:"gray","corTexto": "#FFFFFF", grau: 0, divisores: 18, diametroOrbita: 60 * scale, diametro: 0 * scale , "grauPorDia": 0, "grauBase": 0},
+      "Orientacao3": { "name": "" , cor:"gray","corTexto": "#FFFFFF", grau: 0, divisores: 24, diametroOrbita: 80 * scale, diametro: 0 * scale , "grauPorDia": 0, "grauBase": 0},
+      "Io": { "name": "" , cor:"#F9F290","corTexto": "#FFFFFF", grau: 12, divisores: 30, diametroOrbita: 100 * scale, diametro: 0.48 * scale , "grauPorDia": 0, "grauBase": 0},
+      "Europa": { "name": "" , cor:"#75341A","corTexto": "#FFFFFF", grau: 24, divisores: 36, diametroOrbita: 120 * scale, diametro: 0.44 * scale , "grauPorDia": 0, "grauBase": 0},
+      "Orientacao4": { "name": "" , cor:"gray","corTexto": "#FFFFFF", grau: 0, divisores: 42, diametroOrbita: 140 * scale, diametro: 0 * scale , "grauPorDia": 0, "grauBase": 0},
+      "Ganimedes": { "name": "" , cor:"#B8B0A0","corTexto": "#FFFFFF", grau: 48, divisores: 48, diametroOrbita: 160 * scale, diametro: 0.58 * scale , "grauPorDia": 0, "grauBase": 0},
+      "Orientacao5": { "name": "" , cor:"gray","corTexto": "#FFFFFF", grau: 0, divisores: 54, diametroOrbita: 180 * scale, diametro: 0 * scale , "grauPorDia": 0, "grauBase": 0},
+      "Orientacao6": { "name": "" , cor:"gray","corTexto": "#FFFFFF", grau: 0, divisores: 60, diametroOrbita: 200 * scale, diametro: 0 * scale , "grauPorDia": 0, "grauBase": 0},
+      "Calisto": { "name": "" , cor:"#45655B","corTexto": "#FFFFFF", grau: 96, divisores: 66, diametroOrbita: 220 * scale, diametro: 0.55 * scale , "grauPorDia": 0, "grauBase": 0},
     };
     
 
@@ -98,7 +98,7 @@
       ctx.font = "12px Arial";
       ctx.textAlign = "center";
       ctx.textBaseline = "bottom";
-      ctx.fillText(astro, x, y - 0.8 * fator);
+      ctx.fillText(astro, x, y - 0.8 * scale);
     }
 
     function drawGuideLine(astro) {
@@ -126,7 +126,7 @@
         const { diametroOrbita, cor } = astros[astro];
         const grau = angulo;
 
-        const lineSize = fator / 4;
+        const lineSize = scale / 4;
         const midSize = lineSize / 2;
 
         const raioOrbita = diametroOrbita / 8;
@@ -151,7 +151,7 @@
 
     function drawAsteroids() {
       const numAsteroids = 5000; // Número de asteroides a serem desenhados
-      const asteroidSize = fator / 16
+      const asteroidSize = scale / 16
       const raioOrbita = astros["Orientacao Cinturão de Asteroides"].diametroOrbita / 8; // Raio da órbita
       const cor = astros["Orientacao Cinturão de Asteroides"].cor; // Cor dos asteroides
 
@@ -161,8 +161,8 @@
       for (let i = 0; i < numAsteroids; i++) {
         // Gerar uma posição aleatória ao longo da órbita
         const angulo = Math.random() * 360;
-        const raioVariacao = Math.random() * fator; // Variacao aleatoria de até 5 pixels para cima ou para baixo
-        const raioFinal = raioOrbita + raioVariacao - fator / 2;
+        const raioVariacao = Math.random() * scale; // Variacao aleatoria de até 5 pixels para cima ou para baixo
+        const raioFinal = raioOrbita + raioVariacao - scale / 2;
         const x = canvas.width / 2 + raioFinal * Math.cos((angulo - 90) * (Math.PI / 180));
         const y = canvas.height / 2 + raioFinal * Math.sin((angulo - 90) * (Math.PI / 180));
 
