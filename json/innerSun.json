@@ -1,6 +1,7 @@
 {
     "name": "Sistema Solar Interior",
-    "scale": 75,
+    "scale": 3,
+    "bodyScale": 7,
     "primary": {
         "name": "Sol",
         "cor": "#FFB703",

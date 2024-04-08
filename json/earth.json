@@ -1,6 +1,7 @@
 {
     "name": "Terra",
-    "scale": 100,
+    "scale": 30,
+    "bodyScale": 10,
     "primary": {
         "name": "Terra",
         "cor": "#0274FF",
@@ -8,7 +9,7 @@
         "grau": 0,
         "divisores": 0,
         "diametroOrbita": 0,
-        "diametro": 0,
+        "diametro": 0.9,
         "grauPorDia": 0,
         "grauBase": 0
     },
@@ -16,13 +17,13 @@
         "Lua": {
             "name": "Lua",
             "cor": "White",
-            "corTexto": "#FFFFFF",
+            "corTexto": "#000000",
             "grau": 240,
             "divisores": 3,
-            "diametroOrbita": 0,
-            "diametro": 0,
-            "grauPorDia": 0,
-            "grauBase": 0
+            "diametroOrbita": 100,
+            "diametro": 0.47,
+            "grauPorDia": 13,
+            "grauBase": 240
         }
     }
 }

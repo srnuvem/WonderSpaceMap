@@ -1,7 +1,7 @@
 {
     "name": "Sistema Solar",
     "scale": 3,
-    "bodyScale": 10,
+    "bodyScale": 7,
     "primary": {
         "name": "Sol",
         "cor": "#FFB703",
@@ -215,7 +215,7 @@
         "Jupiter": {
             "name": "Júpiter",
             "cor": "#FFCF54",
-            "corTexto": "#000000",
+            "corTexto": "#FFFFFF",
             "grau": 180,
             "divisores": 66,
             "diametroOrbita": 440,
@@ -237,7 +237,7 @@
         "Saturn": {
             "name": "Saturno",
             "cor": "#FFE9B3",
-            "corTexto": "#000000",
+            "corTexto": "#FFFFFF",
             "grau": 270,
             "divisores": 45,
             "diametroOrbita": 600,

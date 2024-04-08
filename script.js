@@ -5,7 +5,7 @@ const dateSlider = document.getElementById('dateSlider');
 const canvas = document.getElementById('myCanvas');
 const ctx = canvas.getContext('2d');
 
-let selectedJson = 'sun';
+let selectedJson = 'innerSun';
 let systemData = await getSystemData(selectedJson)
 
 var map = L.map('map', {
@@ -116,5 +116,5 @@ function updateImage(ctx, canvas, systemData) {
     });
     L.imageOverlay(imageUrl, imageBounds).addTo(map);
     map.setMaxBounds(imageBounds);
-    map.setView([4320, 4320], -1);
+    map.setView([4320, 4320], -5);
 }

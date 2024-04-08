@@ -1,39 +1,40 @@
 {
-    "name": "",
-    "scale": 0,
+    "name": "Marte",
+    "scale": 120,
+    "bodyScale": 10,
     "primary": {
-        "name": "",
+        "name": "Marte",
         "cor": "#FD4902",
         "corTexto": "#FFFFFF",
         "grau": 0,
         "divisores": 0,
         "diametroOrbita": 0,
-        "diametro": 0,
+        "diametro": 0.65,
         "grauPorDia": 0,
         "grauBase": 0
     },
     "orbits": {
         "Phobos": {
-            "name": "",
+            "name": "Phobos",
             "cor": "White",
             "corTexto": "#FFFFFF",
             "grau": 270,
             "divisores": 3,
-            "diametroOrbita": 0,
-            "diametro": 0,
-            "grauPorDia": 0,
-            "grauBase": 0
+            "diametroOrbita": 10,
+            "diametro": 0.04,
+            "grauPorDia": 1234,
+            "grauBase": 270
         },
         "Deimos": {
-            "name": "",
+            "name": "Deimos",
             "cor": "LightGray",
             "corTexto": "#FFFFFF",
             "grau": 90,
             "divisores": 6,
-            "diametroOrbita": 0,
-            "diametro": 0,
-            "grauPorDia": 0,
-            "grauBase": 0
+            "diametroOrbita": 20,
+            "diametro": 0.03,
+            "grauPorDia": 288,
+            "grauBase": 90
         }
     }
 }

@@ -42,14 +42,14 @@ function drawBody(ctx, canvas, orbit, scale, bodyScale) {
     ctx.fill();
 
     ctx.fillStyle = corTexto;
-    ctx.font = `${scale * bodyScale}px Arial`;
+    ctx.font = `${8*bodyScale}px Arial`;
     ctx.textAlign = "center";
     ctx.textBaseline = "bottom";
-    ctx.fillText(orbit.name, x, y - bodyScale * scale);
+    ctx.fillText(orbit.name, x, y - bodyScale * 3);
     
 }
 
-function drawGuideLine(ctx, canvas, orbit, scale) {
+function drawGuideLine(ctx, canvas, orbit, scale, bodyScale) {
     const { diametroOrbita, cor, grau } = orbit;
 
     const raioOrbita = diametroOrbita * scale ;
@@ -57,15 +57,15 @@ function drawGuideLine(ctx, canvas, orbit, scale) {
     const y = canvas.height / 2 + raioOrbita * Math.sin((grau - 90) * (Math.PI / 180));
 
     ctx.strokeStyle = cor;
-    ctx.setLineDash([8, 2]);
-    ctx.lineWidth = 1;
+    ctx.setLineDash([5, 2]);
+    ctx.lineWidth = Math.ceil(.2 * bodyScale)+1;
 
     ctx.beginPath();
     ctx.arc(canvas.width / 2, canvas.height / 2, raioOrbita, 0, 2 * Math.PI);
     ctx.stroke();
 }
 
-function drawMarkers(ctx, canvas, orbit, scale) {
+function drawMarkers(ctx, canvas, orbit, scale, bodyScale) {
     const divisores = orbit.divisores;
   
     for (let i = 0; i < divisores; i++) {
@@ -74,7 +74,7 @@ function drawMarkers(ctx, canvas, orbit, scale) {
       const { diametroOrbita, cor } = orbit;
       const grau = angulo;
   
-      const lineSize = 9;
+      const lineSize = 2 * bodyScale;
       const midSize = lineSize / 2;
   
       const raioOrbita = diametroOrbita * scale ;
@@ -89,7 +89,7 @@ function drawMarkers(ctx, canvas, orbit, scale) {
   
       ctx.strokeStyle = cor;
       ctx.setLineDash([]);
-      ctx.lineWidth = 2;
+      ctx.lineWidth = Math.ceil(.1 * bodyScale);
       ctx.beginPath();
       ctx.moveTo(inicioX, inicioY);
       ctx.lineTo(fimX, fimY);
@@ -123,15 +123,15 @@ function drawAsteroids(ctx, canvas, orbit, scale) {
 }
 
 function drawPrimary(ctx, canvas, primary, scale, bodyScale) {
-    const { cor, diametro } = primary
+    const { cor, diametro, corTexto } = primary
 
     ctx.fillStyle = cor;
     ctx.beginPath();
     ctx.arc(canvas.width / 2, canvas.height / 2, diametro * scale * bodyScale, 0, 2 * Math.PI);
     ctx.fill();
 
-    ctx.fillStyle = "black";
-    ctx.font = `${bodyScale * scale * 5 }px Arial`;
+    ctx.fillStyle = corTexto;
+    ctx.font = `${10*bodyScale}px Arial`;
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
     ctx.fillText(primary.name, canvas.width / 2, canvas.height / 2
@@ -150,8 +150,8 @@ export function draw(ctx, canvas, systemData) {
     drawAsteroids(ctx, canvas, orbits["Kuiper Belt"], scale);
     
     for (const orbit in orbits) {
-        drawGuideLine(ctx, canvas, orbits[orbit], scale)
-        drawMarkers(ctx, canvas, orbits[orbit], scale);
+        drawGuideLine(ctx, canvas, orbits[orbit], scale, bodyScale)
+        drawMarkers(ctx, canvas, orbits[orbit], scale, bodyScale);
         if (parseInt(orbit.diametro) != 0) {
             drawBody(ctx, canvas, orbits[orbit], scale, bodyScale);
         }
