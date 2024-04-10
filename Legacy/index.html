@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mapas WonderSpace</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="icon" type="image/png" href="icon.png" />
+    <style>
+      body {
+        background-color: black;
+      }
+
+      #map {
+        height: 95vh;
+        background-color: black;
+      }
+
+      .navbar {
+        display: flex;
+        justify-content: space-around;
+        background-color: #333;
+        color: white;
+        padding: 10px 0;
+      }
+
+      .navbar-item {
+        cursor: pointer;
+      }
+
+      .navbar-item:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="navbar">
+      <div class="navbar-item" data-image="SolInterior">Sol Interior</div>
+      <div class="navbar-item" data-image="Terra">Terra</div>
+      <div class="navbar-item" data-image="Marte">Marte</div>
+      <div class="navbar-item" data-image="Jupiter">Jupiter</div>
+      <div class="navbar-item" data-image="Sol">Sol</div>
+    </div>
+
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+      var map = L.map("map", {
+        crs: L.CRS.Simple,
+        minZoom: -3, // ajusta o zoom inicial, se necessário
+      });
+
+      let markersLayer = L.layerGroup().addTo(map);
+
+      function getLastSaturday() {
+        var today = new Date();
+        if (today < new Date(2024, 5, 8)) {
+          today = new Date(2024, 5, 8);
+        }
+        var day = today.getDay();
+        var diff = today.getDate() - day + (day === 0 ? -6 : day > 6 ? 6 : -1); // ajuste para obter o último sábado
+        return new Date(today.setDate(diff)).toISOString().split("T")[0];
+      }
+
+      // Função para atualizar a imagem com base na opção selecionada
+      function updateImage(event) {
+        var target = event.target;
+        var dataImage = target.getAttribute("data-image");
+
+        if (dataImage.includes("Sol")) {
+          var lastSaturday = getLastSaturday();
+          var year = lastSaturday.slice(0, 4);
+          var month = lastSaturday.slice(5, 7);
+          var day = lastSaturday.slice(8, 10);
+          var url = `${dataImage}Resources/${dataImage}-${day}_${month}_${
+            parseInt(year) + 200
+          }`;
+
+          var imageUrl = url + ".png";
+          var jsonUrl = url + ".json";
+        } else {
+          var imageUrl = `Legacy/${dataImage}.png`;
+          var jsonUrl = `Legacy/${dataImage}.json`;
+        }
+
+        var imageBounds = [
+          [0, 0],
+          [8640, 8640],
+        ]; // ajusta a altura e largura da imagem
+
+        map.eachLayer(function (layer) {
+          if (layer instanceof L.ImageOverlay) {
+            map.removeLayer(layer);
+          }
+        });
+
+        L.imageOverlay(imageUrl, imageBounds).addTo(map);
+        map.setMaxBounds(imageBounds);
+        map.setView([4320, 4320], -3);
+
+        let placesData = {}
+        addMarkers(map, placesData);
+      }
+
+      // Adiciona evento de clique a cada item da navbar
+      var navbarItems = document.querySelectorAll(".navbar-item");
+      navbarItems.forEach(function (item) {
+        item.addEventListener("click", updateImage);
+      });
+
+      // Define a imagem inicial como "Sistema Solar Interior"
+      var defaultImage = document.querySelector(
+        '.navbar-item[data-image="SolInterior"]'
+      );
+      updateImage({ target: defaultImage });
+
+      function addMarkers(map, placesData) {
+        clearMap(map);
+
+        //   for (const place in placesData) {
+            // const placeData = placesData[place];
+
+            const latLng = map.containerPointToLatLng(L.point(922.125, 213.125));
+
+            const marker = L.marker(latLng).bindPopup("placeData.name");
+            markersLayer.addLayer(marker);
+        //   }
+      }
+
+      function clearMap(map) {
+        markersLayer.clearLayers();
+
+        map.eachLayer(function (layer) {
+          if (layer instanceof L.Marker) {
+            map.removeLayer(layer);
+          }
+        });
+      }
+    </script>
+  </body>
+</html>

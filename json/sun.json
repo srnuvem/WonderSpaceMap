@@ -67,7 +67,25 @@
             "diametroOrbita": 120,
             "diametro": 0.55,
             "grauPorDia": 4.09,
-            "grauBase": 0
+            "grauBase": 0,
+            "places": [
+                {
+                    "name": "Mercurio1",
+                    "title": "Luna 1",
+                    "description": "Luna 1",
+                    "imageUrl": "luna1.png",
+                    "xOffset": 1,
+                    "yOffset": 1
+                },
+                {
+                    "name": "Mercurio2",
+                    "title": "Luna 2",
+                    "description": "Luna 1",
+                    "imageUrl": "luna1.png",
+                    "xOffset": 3,
+                    "yOffset": 3
+                }
+            ]
         },
         "GuideLine5": {
             "name": "",
@@ -89,7 +107,17 @@
             "diametroOrbita": 160,
             "diametro": 0.87,
             "grauPorDia": 1.6,
-            "grauBase": 60
+            "grauBase": 60,
+            "places": [
+                {
+                    "name": "Mercurio1",
+                    "title": "Luna 1",
+                    "description": "Luna 1",
+                    "imageUrl": "luna1.png",
+                    "xOffset": 0,
+                    "yOffset": 0
+                }
+            ]
         },
         "GuideLine6": {
             "name": "",
@@ -111,7 +139,17 @@
             "diametroOrbita": 200,
             "diametro": 0.9,
             "grauPorDia": 0.99,
-            "grauBase": 300
+            "grauBase": 300,
+            "places": [
+                {
+                    "name": "Mercurio1",
+                    "title": "Luna 1",
+                    "description": "Luna 1",
+                    "imageUrl": "luna1.png",
+                    "xOffset": 0,
+                    "yOffset": 0
+                }
+            ]
         },
         "GuideLine7": {
             "name": "",
@@ -133,7 +171,17 @@
             "diametroOrbita": 240,
             "diametro": 0.65,
             "grauPorDia": 0.52,
-            "grauBase": 60
+            "grauBase": 60,
+            "places": [
+                {
+                    "name": "Mercurio1",
+                    "title": "Luna 1",
+                    "description": "Luna 1",
+                    "imageUrl": "luna1.png",
+                    "xOffset": 0,
+                    "yOffset": 0
+                }
+            ]
         },
         "GuideLine8": {
             "name": "",
@@ -155,7 +203,17 @@
             "diametroOrbita": 320,
             "diametro": 0.18,
             "grauPorDia": 0.214,
-            "grauBase": 300
+            "grauBase": 300,
+            "places": [
+                {
+                    "name": "Mercurio1",
+                    "title": "Luna 1",
+                    "description": "Luna 1",
+                    "imageUrl": "luna1.png",
+                    "xOffset": 0,
+                    "yOffset": 0
+                }
+            ]
         },
         "Asteroid Belt": {
             "name": "Cinturão de Asteroides",
@@ -177,7 +235,17 @@
             "diametroOrbita": 320,
             "diametro": 0.18,
             "grauPorDia": 0.214,
-            "grauBase": 210
+            "grauBase": 210,
+            "places": [
+                {
+                    "name": "Mercurio1",
+                    "title": "Luna 1",
+                    "description": "Luna 1",
+                    "imageUrl": "luna1.png",
+                    "xOffset": 0,
+                    "yOffset": 0
+                }
+            ]
         },
         "Ceres": {
             "name": "Ceres",
@@ -188,7 +256,17 @@
             "diametroOrbita": 320,
             "diametro": 0.24,
             "grauPorDia": 0.214,
-            "grauBase": 120
+            "grauBase": 120,
+            "places": [
+                {
+                    "name": "Mercurio1",
+                    "title": "Luna 1",
+                    "description": "Luna 1",
+                    "imageUrl": "luna1.png",
+                    "xOffset": 0,
+                    "yOffset": 0
+                }
+            ]
         },
         "GuideLine9": {
             "name": "",
@@ -221,7 +299,17 @@
             "diametroOrbita": 440,
             "diametro": 2.97,
             "grauPorDia": 0.083,
-            "grauBase": 180
+            "grauBase": 180,
+            "places": [
+                {
+                    "name": "Mercurio1",
+                    "title": "Luna 1",
+                    "description": "Luna 1",
+                    "imageUrl": "luna1.png",
+                    "xOffset": 0,
+                    "yOffset": 0
+                }
+            ]
         },
         "GuideLine12": {
             "name": "",
@@ -243,7 +331,17 @@
             "diametroOrbita": 600,
             "diametro": 2.71,
             "grauPorDia": 0.033,
-            "grauBase": 270
+            "grauBase": 270,
+            "places": [
+                {
+                    "name": "Mercurio1",
+                    "title": "Luna 1",
+                    "description": "Luna 1",
+                    "imageUrl": "luna1.png",
+                    "xOffset": 0,
+                    "yOffset": 0
+                }
+            ]
         },
         "GuideLine15": {
             "name": "",
@@ -287,7 +385,17 @@
             "diametroOrbita": 920,
             "diametro": 1.79,
             "grauPorDia": 0.012,
-            "grauBase": 330
+            "grauBase": 330,
+            "places": [
+                {
+                    "name": "Mercurio1",
+                    "title": "Luna 1",
+                    "description": "Luna 1",
+                    "imageUrl": "luna1.png",
+                    "xOffset": 0,
+                    "yOffset": 0
+                }
+            ]
         },
         "GuideLine22": {
             "name": "",
@@ -309,7 +417,17 @@
             "diametroOrbita": 1080,
             "diametro": 1.76,
             "grauPorDia": 0.006,
-            "grauBase": 90
+            "grauBase": 90,
+            "places": [
+                {
+                    "name": "Mercurio1",
+                    "title": "Luna 1",
+                    "description": "Luna 1",
+                    "imageUrl": "luna1.png",
+                    "xOffset": 0,
+                    "yOffset": 0
+                }
+            ]
         },
         "Kuiper Belt": {
             "name": "Cinturão de Kuiper",
@@ -331,7 +449,17 @@
             "diametroOrbita": 1240,
             "diametro": 0.39,
             "grauPorDia": 0.004,
-            "grauBase": 0
+            "grauBase": 0,
+            "places": [
+                {
+                    "name": "Mercurio1",
+                    "title": "Luna 1",
+                    "description": "Luna 1",
+                    "imageUrl": "luna1.png",
+                    "xOffset": 0,
+                    "yOffset": 0
+                }
+            ]
         },
         "Haumea": {
             "name": "",
@@ -342,7 +470,17 @@
             "diametroOrbita": 1240,
             "diametro": 0.35,
             "grauPorDia": 0.006,
-            "grauBase": 0.4
+            "grauBase": 0.4,
+            "places": [
+                {
+                    "name": "Mercurio1",
+                    "title": "Luna 1",
+                    "description": "Luna 1",
+                    "imageUrl": "luna1.png",
+                    "xOffset": 0,
+                    "yOffset": 0
+                }
+            ]
         },
         "Eris": {
             "name": "Eris",
@@ -353,7 +491,17 @@
             "diametroOrbita": 1240,
             "diametro": 0.38,
             "grauPorDia": 0.002,
-            "grauBase": 60
+            "grauBase": 60,
+            "places": [
+                {
+                    "name": "Mercurio1",
+                    "title": "Luna 1",
+                    "description": "Luna 1",
+                    "imageUrl": "luna1.png",
+                    "xOffset": 0,
+                    "yOffset": 0
+                }
+            ]
         },
         "Makemake": {
             "name": "Makemake",
@@ -364,7 +512,17 @@
             "diametroOrbita": 1240,
             "diametro": 0.3,
             "grauPorDia": 0.005,
-            "grauBase": 320
+            "grauBase": 320,
+            "places": [
+                {
+                    "name": "Mercurio1",
+                    "title": "Luna 1",
+                    "description": "Luna 1",
+                    "imageUrl": "luna1.png",
+                    "xOffset": 0,
+                    "yOffset": 0
+                }
+            ]
         }
     }
 }

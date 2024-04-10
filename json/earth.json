@@ -23,7 +23,21 @@
             "diametroOrbita": 100,
             "diametro": 0.47,
             "grauPorDia": 13,
-            "grauBase": 240
+            "grauBase": 240,
+            "places":[
+                {
+                    "name":"Luna1",
+                    "title": "Luna 1",
+                    "description": "Luna 1",
+                    "imageUrl": "luna1.png"
+                },
+                {
+                    "name":"Luna2",
+                    "title": "Luna 2",
+                    "description": "Luna 2",
+                    "imageUrl": "luna2.png"
+                }
+            ]
         }
     }
 }

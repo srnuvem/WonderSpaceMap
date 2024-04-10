@@ -27,7 +27,6 @@ function drawStars(ctx, canvas) {
     }
 }
 
-
 function drawBody(ctx, canvas, orbit, scale, bodyScale) {
 
     const { diametroOrbita, cor, grau, diametro, corTexto } = orbit;
