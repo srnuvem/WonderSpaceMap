@@ -34,7 +34,7 @@ dateInput.addEventListener("change", async function () {
 export async function getSystemData(selectedJson) {
   let systemData = {};
 
-  await fetch(`/resources/${selectedJson}.json`)
+  await fetch(`${selectedJson}.json`)
     .then((response) => response.json())
     .then((data) => {
       systemData = data;
@@ -82,7 +82,7 @@ updateMap(systemData);
 
 export function updateMap(systemData) {
   console.log(systemData.imageURL);
-  imageURL = `resources/${systemData.imageURL}`;
+  imageURL = `${systemData.imageURL}`;
 
   var imageBounds = [
     [0, 0],
