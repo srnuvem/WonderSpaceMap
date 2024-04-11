@@ -1,7 +1,9 @@
 {
+    "id": "sun",
     "name": "Sistema Solar",
     "scale": 3,
     "bodyScale": 7,
+    "date": "01-06-2224",
     "primary": {
         "name": "Sol",
         "cor": "#FFB703",
@@ -524,5 +526,6 @@
                 }
             ]
         }
-    }
+    },
+    "markersData": []
 }

@@ -1,0 +1,135 @@
+{
+  "systemId": "sun",
+  "systemDate": "01/06/2224",
+  "systemName": "Sistema Solar",
+  "markersData": [
+    {
+      "orbit": "Mercury",
+      "name": "Mercurio1",
+      "latlng": {
+        "lat": 4679,
+        "lng": 4321
+      }
+    },
+    {
+      "orbit": "Mercury",
+      "name": "Mercurio2",
+      "latlng": {
+        "lat": 4677,
+        "lng": 4323
+      }
+    },
+    {
+      "orbit": "Venus",
+      "name": "Mercurio1",
+      "latlng": {
+        "lat": 4560,
+        "lng": 4735.692193816531
+      }
+    },
+    {
+      "orbit": "Earth",
+      "name": "Mercurio1",
+      "latlng": {
+        "lat": 4620,
+        "lng": 3800.3847577293363
+      }
+    },
+    {
+      "orbit": "Mars",
+      "name": "Mercurio1",
+      "latlng": {
+        "lat": 4680,
+        "lng": 4943.538290724796
+      }
+    },
+    {
+      "orbit": "Vesta",
+      "name": "Mercurio1",
+      "latlng": {
+        "lat": 4800,
+        "lng": 3488.615612366939
+      }
+    },
+    {
+      "orbit": "Pallas",
+      "name": "Mercurio1",
+      "latlng": {
+        "lat": 3488.615612366939,
+        "lng": 3840
+      }
+    },
+    {
+      "orbit": "Ceres",
+      "name": "Mercurio1",
+      "latlng": {
+        "lat": 3840,
+        "lng": 5151.384387633061
+      }
+    },
+    {
+      "orbit": "Jupiter",
+      "name": "Mercurio1",
+      "latlng": {
+        "lat": 3000,
+        "lng": 4320
+      }
+    },
+    {
+      "orbit": "Saturn",
+      "name": "Mercurio1",
+      "latlng": {
+        "lat": 4320,
+        "lng": 2520
+      }
+    },
+    {
+      "orbit": "Urano",
+      "name": "Mercurio1",
+      "latlng": {
+        "lat": 6710.23011444505,
+        "lng": 2939.999999999999
+      }
+    },
+    {
+      "orbit": "Netuno",
+      "name": "Mercurio1",
+      "latlng": {
+        "lat": 4320,
+        "lng": 7560
+      }
+    },
+    {
+      "orbit": "Pluto and Haumea",
+      "name": "Mercurio1",
+      "latlng": {
+        "lat": 8040,
+        "lng": 4320
+      }
+    },
+    {
+      "orbit": "Haumea",
+      "name": "Mercurio1",
+      "latlng": {
+        "lat": 8039.909346224069,
+        "lng": 4345.970288308417
+      }
+    },
+    {
+      "orbit": "Eris",
+      "name": "Mercurio1",
+      "latlng": {
+        "lat": 6180,
+        "lng": 7541.614502078111
+      }
+    },
+    {
+      "orbit": "Makemake",
+      "name": "Mercurio1",
+      "latlng": {
+        "lat": 7169.685328402598,
+        "lng": 1928.8300919660733
+      }
+    }
+  ]
+}

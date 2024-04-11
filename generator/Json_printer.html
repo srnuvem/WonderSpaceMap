@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Órbitas dos Corpos Celestes</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    canvas {
+      display: block;
+      margin: auto;
+      border: 1px solid black;
+    }
+
+    button {
+      display: block;
+      margin: 10px auto;
+    }
+  </style>
+</head>
+
+<body>
+  <button id="saveButton">Salvar Imagem</button>
+  <canvas id="myCanvas" width="4320" height="4320"></canvas>
+  <script>
+
+    const canvas = document.getElementById('myCanvas');
+    const ctx = canvas.getContext('2d');
+    // const scale = canvas.width / 960
+    const scale = 1;
+
+    const astros = {
+      "Marte": { "name": "" , cor:"#FD4902","corTexto": "#FFFFFF", grau: 0, divisores: 0, diametroOrbita: 0 * scale, diametro: 0.65 * scale , "grauPorDia": 0, "grauBase": 0},
+      "Phobos": { "name": "" , cor:"White","corTexto": "#FFFFFF", grau: 270, divisores: 3, diametroOrbita:  10 * scale, diametro:  0.04 * scale , "grauPorDia": 0, "grauBase": 0},
+      "Deimos": { "name": "" , cor:"LightGray","corTexto": "#FFFFFF", grau: 90, divisores: 6, diametroOrbita:  20 * scale, diametro:  0.03 * scale , "grauPorDia": 0, "grauBase": 0},
+    };
+
+
+
+
+    const chaves = Object.keys(astros);
+    const primeiraChave = chaves[0];
+    const primary = astros[primeiraChave];
+
+    delete astros[primeiraChave];
+    orbits = astros;
+
+    json = { name: "", scale, primary, orbits }
+    console.log(JSON.stringify(json)); _
+
+
+  </script>
+</body>
+
+</html>

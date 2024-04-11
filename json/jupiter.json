@@ -1,7 +1,9 @@
 {
+    "id": "jupiter",
     "name": "Jupiter",
     "scale": 15,
     "bodyScale": 10,
+    "date": "01-06-2224",
     "primary": {
         "name": "Jupiter",
         "cor": "#FFCF54",
@@ -135,5 +137,6 @@
             "grauPorDia": 22,
             "grauBase": 96
         }
-    }
+    },
+    "markersData": []
 }
