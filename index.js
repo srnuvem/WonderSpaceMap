@@ -1,100 +1,118 @@
-var map = L.map("map", {
-    crs: L.CRS.Simple,
-    minZoom: -3, // ajusta o zoom inicial, se necessário
-  });
+const dateInput = document.getElementById("dateInput");
+const dateSlider = document.getElementById("dateSlider");
 
-  let markersLayer = L.layerGroup().addTo(map);
-  let selectedImage = 
-
-  function getLastSaturday() {
-    var today = new Date();
-    if (today < new Date(2024, 5, 8)) {
-      today = new Date(2024, 5, 8);
-    }
-    var day = today.getDay();
-    var diff = today.getDate() - day + (day === 0 ? -6 : day > 6 ? 6 : -1); // ajuste para obter o último sábado
-    return new Date(today.setDate(diff)).toISOString().split("T")[0];
-  }
-
-  document.querySelectorAll(".navbar-item").forEach((item) => {
-    item.addEventListener("click", async function () {
-      selectedJson = this.getAttribute("data-json");
-      await updateSystemData(selectedJson);
-      updateMap(ctx, canvas, systemData);
-    });
-  });
-
-  // Função para atualizar a imagem com base na opção selecionada
-  function updateImage(event) {
-    var target = event.target;
-    var dataImage = target.getAttribute("data-image");
-
-    if (dataImage.includes("Sol")) {
-      var lastSaturday = getLastSaturday();
-      var year = lastSaturday.slice(0, 4);
-      var month = lastSaturday.slice(5, 7);
-      var day = lastSaturday.slice(8, 10);
-      var url = `${dataImage}Resources/${dataImage}-${day}_${month}_${
-        parseInt(year) + 200
-      }`;
-
-      var imageUrl = url + ".png";
-      var jsonUrl = url + ".json";
-    } else {
-      var imageUrl = `Legacy/${dataImage}.png`;
-      var jsonUrl = `Legacy/${dataImage}.json`;
-    }
-
-    var imageBounds = [
-      [0, 0],
-      [8640, 8640],
-    ]; // ajusta a altura e largura da imagem
-
-    map.eachLayer(function (layer) {
-      if (layer instanceof L.ImageOverlay) {
-        map.removeLayer(layer);
-      }
-    });
-
-    L.imageOverlay(imageUrl, imageBounds).addTo(map);
-    map.setMaxBounds(imageBounds);
-    map.setView([4320, 4320], -3);
-
-    let placesData = {}
-    addMarkers(map, placesData);
-  }
-
-  // Adiciona evento de clique a cada item da navbar
-  var navbarItems = document.querySelectorAll(".navbar-item");
-  navbarItems.forEach(function (item) {
-    item.addEventListener("click", updateImage);
-  });
-
-  // Define a imagem inicial como "Sistema Solar Interior"
-  var defaultImage = document.querySelector(
-    '.navbar-item[data-image="SolInterior"]'
+dateSlider.addEventListener("input", async function () {
+  const sliderValue = parseInt(dateSlider.value);
+  const diaInicio = new Date(2224, 5, 1);
+  const selectedDate = new Date(
+    diaInicio.getTime() + sliderValue * 7 * 24 * 60 * 60 * 1000
   );
-  updateImage({ target: defaultImage });
+  dateInput.value = `${selectedDate.getDate()}/${
+    selectedDate.getMonth() + 1
+  }/${selectedDate.getFullYear()}`;
 
-  function addMarkers(map, placesData) {
-    clearMap(map);
+  const event = new Event("change");
+  dateInput.dispatchEvent(event);
 
-    //   for (const place in placesData) {
-        // const placeData = placesData[place];
+  selectedJson = `${selectedSystem}-${formatDate(dateInput.value)}`;
+  await updateSystemData(selectedJson);
+  updateMap(systemData);
+});
 
-        const latLng = map.containerPointToLatLng(L.point(922.125, 213.125));
+let selectedSystem = `sun`;
+let selectedJson = "sun-01_06_2224";
+let systemData = await getSystemData(selectedJson);
 
-        const marker = L.marker(latLng).bindPopup("placeData.name");
-        markersLayer.addLayer(marker);
-    //   }
-  }
+dateInput.addEventListener("change", async function () {
+  const selectedDate = dateInput.value + "";
+  selectedJson = `${selectedSystem}-${formatDate(dateInput.value)}`;
+  await updateSystemData(selectedJson);
+  updateMap(systemData);
+});
 
-  function clearMap(map) {
-    markersLayer.clearLayers();
+export async function getSystemData(selectedJson) {
+  let systemData = {};
 
-    map.eachLayer(function (layer) {
-      if (layer instanceof L.Marker) {
-        map.removeLayer(layer);
-      }
+  await fetch(`/resources/${selectedJson}.json`)
+    .then((response) => response.json())
+    .then((data) => {
+      systemData = data;
+    })
+    .catch((error) => {
+      console.error("Erro:", error);
     });
-  }
+
+  return systemData;
+}
+
+export async function updateSystemData(selectedJson) {
+  systemData = await getSystemData(selectedJson);
+}
+
+document.querySelectorAll(".navbar-item").forEach((item) => {
+  item.addEventListener("click", async function () {
+    selectedSystem = this.getAttribute("data-selected");
+
+    selectedJson = `${selectedSystem}-${formatDate(dateInput.value)}`;
+    await updateSystemData(selectedJson);
+    updateMap(systemData);
+  });
+});
+
+function parseDate(dateString) {
+  const [day, month, year] = dateString.split("/");
+  return new Date(year, month - 1, day); // month - 1 porque os meses no objeto Date são 0-indexados
+}
+
+function formatDate(dateString) {
+  const selectedDate = parseDate(dateString);
+  const formattedDate = selectedDate.toLocaleDateString("pt-BR").toString();
+  return formattedDate.replaceAll("/", "_");
+}
+
+var map = L.map("map", {
+  crs: L.CRS.Simple,
+  minZoom: -3,
+});
+
+let markersLayer = L.layerGroup().addTo(map);
+
+updateMap(systemData);
+
+export function updateMap(systemData) {
+  console.log(systemData.imageURL);
+  var imageUrl = `resources/${systemData.imageURL}`;
+
+  var imageBounds = [
+    [0, 0],
+    [8640, 8640],
+  ];
+
+  clearMap(map);
+
+  L.imageOverlay(imageUrl, imageBounds).addTo(map);
+
+  map.setMaxBounds(imageBounds);
+  map.setView([4320, 4320], -3);
+
+  addMarkers(map, systemData);
+}
+
+function addMarkers(map, systemData) {
+  clearMap(map);
+
+  systemData.markersData.forEach(markerData => {
+    const { name, latlng } = markerData;
+    L.marker([latlng.lat, latlng.lng]).addTo(map).bindPopup(name);
+  });
+}
+
+export function clearMap(map) {
+  markersLayer.clearLayers();
+
+  map.eachLayer(function (layer) {
+    if (layer instanceof L.Marker) {
+      map.removeLayer(layer);
+    }
+  });
+}

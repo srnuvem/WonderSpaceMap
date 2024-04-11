@@ -12,11 +12,11 @@
 
   <body>
     <div class="navbar">
-      <div class="navbar-item" data-json="innerSun">Sol Interior</div>
-      <div class="navbar-item" data-json="earth">Terra</div>
-      <div class="navbar-item" data-json="mars">Marte</div>
-      <div class="navbar-item" data-json="jupiter">Jupiter</div>
-      <div class="navbar-item" data-json="sun">Sol</div>
+      <div class="navbar-item" data-selected="innerSun">Sol Interior</div>
+      <div class="navbar-item" data-selected="earth">Terra</div>
+      <div class="navbar-item" data-selected="mars">Marte</div>
+      <div class="navbar-item" data-selected="jupiter">Jupiter</div>
+      <div class="navbar-item" data-selected="sun">Sol</div>
     </div>
     <div style="display: block">
       <input
@@ -24,11 +24,11 @@
         id="dateInput"
         class="date-input"
         placeholder="Digite a data (dd/mm/yyyy)"
+        readonly
       />
     </div>
     <input type="range" id="dateSlider" min="0" max="52" value="0" step="1" />
     <div id="map"></div>
-    <canvas id="myCanvas" width="8640" height="8640"></canvas>
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="index.js" type="module"></script>
     <script>

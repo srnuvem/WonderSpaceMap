@@ -31,6 +31,7 @@ dateInput.addEventListener("change", function () {
 
 document.getElementById("saveButton").addEventListener("click", saveImage);
 document.getElementById("saveButton52").addEventListener("click", saveImage52);
+document.getElementById("saveButton52Json").addEventListener("click", saveJson52);
 
 export async function getSystemData(selectedJson) {
   let systemData = {};
@@ -54,6 +55,12 @@ export async function updateSystemData(selectedJson) {
 function parseDate(dateString) {
   const [day, month, year] = dateString.split("/");
   return new Date(year, month - 1, day); // month - 1 porque os meses no objeto Date são 0-indexados
+}
+
+function formatDate(dateString) {
+  const selectedDate = parseDate(dateString)
+  const formattedDate = selectedDate.toLocaleDateString("pt-BR").toString();
+  return formattedDate.replaceAll("/","_");
 }
 
 export async function updatePositions(dateText) {
@@ -99,18 +106,36 @@ export async function saveImage52() {
   }
 }
 
+export async function saveJson52() {
+  const startDate = new Date(2224, 5, 1);
+  for (let i = 0; i < 52; i++) {
+    const selectedDate = new Date(
+      startDate.getTime() + i * 7 * 24 * 60 * 60 * 1000
+    );
+    const formattedDate = selectedDate.toLocaleDateString("pt-BR");
+    generateMarkers(formattedDate);
+    console.log("Json salva para a data: ", formattedDate);
+  }
+}
+
 function saveImage() {
   const selectedDate = dateInput.value;
+  
   generateImage(selectedDate);
   generateMarkers(selectedDate);
 }
 
-function generateImage(date) {
-  updatePositions(date);
+function generateImage(selectedDate) {
+  updatePositions(selectedDate);
+
+  
+  const formattedDate = formatDate(selectedDate)
+
   const dataURL = canvas.toDataURL("image/png");
   const link = document.createElement("a");
   link.href = dataURL;
-  link.download = `sun-${date}.png`;
+  link.download = `${systemData.id}-${formattedDate}.png`;
+  systemData.imageURL = link.download;
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
@@ -124,6 +149,7 @@ function generateMarkers(date) {
     systemDate:  systemData.date,
     systemName: systemData.name,
     markersData: systemData.markersData,
+    imageURL: systemData.imageURL
   };
 
   // Converte os dados dos marcadores para JSON
