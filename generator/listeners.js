@@ -31,7 +31,10 @@ dateInput.addEventListener("change", function () {
 
 document.getElementById("saveButton").addEventListener("click", saveImage);
 document.getElementById("saveButton52").addEventListener("click", saveImage52);
-document.getElementById("saveButton52Json").addEventListener("click", saveJson52);
+document
+  .getElementById("saveButton52Json")
+  .addEventListener("click", saveJson52);
+document.getElementById("saveUsAll").addEventListener("click", saveUsAll);
 
 export async function getSystemData(selectedJson) {
   let systemData = {};
@@ -58,9 +61,9 @@ function parseDate(dateString) {
 }
 
 function formatDate(dateString) {
-  const selectedDate = parseDate(dateString)
+  const selectedDate = parseDate(dateString);
   const formattedDate = selectedDate.toLocaleDateString("pt-BR").toString();
-  return formattedDate.replaceAll("/","_");
+  return formattedDate.replaceAll("/", "_");
 }
 
 export async function updatePositions(dateText) {
@@ -82,7 +85,6 @@ export async function updatePositions(dateText) {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   updateMap(ctx, canvas, systemData);
-
 }
 
 document.querySelectorAll(".navbar-item").forEach((item) => {
@@ -95,20 +97,22 @@ document.querySelectorAll(".navbar-item").forEach((item) => {
 
 export async function saveImage52() {
   const startDate = new Date(2224, 5, 1);
-  for (let i = 0; i < 12; i++) {
+  for (let i = 0; i < 52; i++) {
     const selectedDate = new Date(
       startDate.getTime() + i * 7 * 24 * 60 * 60 * 1000
     );
     const formattedDate = selectedDate.toLocaleDateString("pt-BR");
     generateImage(formattedDate);
+    console.log(systemData.id + " Imagem: " + (parseInt(i)+1) + " salva para a data: ", formattedDate);
     generateMarkers(formattedDate);
-    console.log("Imagem salva para a data: ", formattedDate);
+    console.log(systemData.id + " JSON: " + (parseInt(i)+1) + " salva para a data: ", formattedDate);
+    
   }
 }
 
 export function saveJson52() {
   const startDate = new Date(2224, 5, 1);
-  for (let i = 0; i < 12; i++) {
+  for (let i = 0; i < 52; i++) {
     const selectedDate = new Date(
       startDate.getTime() + i * 7 * 24 * 60 * 60 * 1000
     );
@@ -118,9 +122,22 @@ export function saveJson52() {
   }
 }
 
+function saveUsAll() {
+  const all = ["innerSun", "earth", "mars", "jupiter", "sun"];
+
+  all.forEach(async element => {
+    selectedJson = element;
+    await updateSystemData(selectedJson);
+    updateMap(ctx, canvas, systemData);
+
+    saveImage52();
+  });
+
+}
+
 function saveImage() {
   const selectedDate = dateInput.value;
-  
+
   generateImage(selectedDate);
   generateMarkers(selectedDate);
 }
@@ -128,8 +145,7 @@ function saveImage() {
 function generateImage(selectedDate) {
   updatePositions(selectedDate);
 
-  
-  const formattedDate = formatDate(selectedDate)
+  const formattedDate = formatDate(selectedDate);
 
   const dataURL = canvas.toDataURL("image/png");
   const link = document.createElement("a");
@@ -146,10 +162,10 @@ function generateMarkers(date) {
 
   var placesData = {
     systemId: systemData.id,
-    systemDate:  systemData.date,
+    systemDate: systemData.date,
     systemName: systemData.name,
     imageURL: systemData.imageURL,
-    markersData: systemData.markersData
+    markersData: systemData.markersData,
   };
 
   // Converte os dados dos marcadores para JSON
