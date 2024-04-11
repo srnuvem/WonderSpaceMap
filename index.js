@@ -19,9 +19,10 @@ dateSlider.addEventListener("input", async function () {
   updateMap(systemData);
 });
 
-let selectedSystem = `sun`;
-let selectedJson = "sun-01_06_2224";
+let selectedSystem = `jupiter`;
+let selectedJson = "jupiter-01_06_2224";
 let systemData = await getSystemData(selectedJson);
+let imageURL = selectedJson+".png"
 
 dateInput.addEventListener("change", async function () {
   const selectedDate = dateInput.value + "";
@@ -81,7 +82,7 @@ updateMap(systemData);
 
 export function updateMap(systemData) {
   console.log(systemData.imageURL);
-  var imageUrl = `resources/${systemData.imageURL}`;
+  imageURL = `resources/${systemData.imageURL}`;
 
   var imageBounds = [
     [0, 0],
@@ -90,7 +91,7 @@ export function updateMap(systemData) {
 
   clearMap(map);
 
-  L.imageOverlay(imageUrl, imageBounds).addTo(map);
+  L.imageOverlay(imageURL, imageBounds).addTo(map);
 
   map.setMaxBounds(imageBounds);
   map.setView([4320, 4320], -3);
@@ -115,4 +116,22 @@ export function clearMap(map) {
       map.removeLayer(layer);
     }
   });
+}
+
+document.getElementById("saveImage").addEventListener("click", saveImage);
+
+
+function saveImage() {
+  const selectedDate = dateInput.value;
+
+  const formattedDate = formatDate(selectedDate);
+
+  const dataURL = imageURL;
+  const link = document.createElement("a");
+  link.href = dataURL;
+  link.download = `${selectedSystem}-${formattedDate}.png`;
+  systemData.imageURL = link.download;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
 }

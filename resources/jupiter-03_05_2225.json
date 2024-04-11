@@ -1,0 +1,48 @@
+{
+  "systemId": "jupiter",
+  "systemDate": "03/05/2225",
+  "systemName": "Jupiter",
+  "imageURL": "jupiter-03_05_2225.png",
+  "markersData": [
+    {
+      "orbit": "Almateia",
+      "name": "Almateia",
+      "latlng": {
+        "lat": 4257.282922039408,
+        "lng": 3723.286862779036
+      }
+    },
+    {
+      "orbit": "Io",
+      "name": "Io",
+      "latlng": {
+        "lat": 2949.681813536099,
+        "lng": 3709.8950353863
+      }
+    },
+    {
+      "orbit": "Europa",
+      "name": "Europa",
+      "latlng": {
+        "lat": 4876.2305898749055,
+        "lng": 2608.0982706687237
+      }
+    },
+    {
+      "orbit": "Ganimedes",
+      "name": "Ganimedes",
+      "latlng": {
+        "lat": 1972.4457582388668,
+        "lng": 4818.988057962622
+      }
+    },
+    {
+      "orbit": "Calisto",
+      "name": "Calisto",
+      "latlng": {
+        "lat": 3975.0560712167435,
+        "lng": 1038.0777452846983
+      }
+    }
+  ]
+}

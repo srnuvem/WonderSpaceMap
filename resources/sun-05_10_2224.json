@@ -1,0 +1,144 @@
+{
+  "systemId": "sun",
+  "systemDate": "05/10/2224",
+  "systemName": "Sistema Solar",
+  "imageURL": "sun-05_10_2224.png",
+  "markersData": [
+    {
+      "orbit": "Mercury",
+      "name": "Mercurio 1",
+      "latlng": {
+        "lat": 3991.8321143518256,
+        "lng": 4170.796223081765
+      }
+    },
+    {
+      "orbit": "Mercury",
+      "name": "Mercurio 2",
+      "latlng": {
+        "lat": 3989.8321143518256,
+        "lng": 4172.796223081765
+      }
+    },
+    {
+      "orbit": "Venus",
+      "name": "Vênus",
+      "latlng": {
+        "lat": 3943.827140483597,
+        "lng": 4021.849065466411
+      }
+    },
+    {
+      "orbit": "Earth",
+      "name": "Terra",
+      "latlng": {
+        "lat": 3722.052035953311,
+        "lng": 4369.580563655725
+      }
+    },
+    {
+      "orbit": "Mars",
+      "name": "Hongse",
+      "latlng": {
+        "lat": 5041.661130496936,
+        "lng": 4245.740892044048
+      }
+    },
+    {
+      "orbit": "Mars",
+      "name": "Krasny",
+      "latlng": {
+        "lat": 5031.661130496936,
+        "lng": 4255.740892044048
+      }
+    },
+    {
+      "orbit": "Vesta",
+      "name": "Vesta",
+      "latlng": {
+        "lat": 4370.844867180445,
+        "lng": 3361.347404175317
+      }
+    },
+    {
+      "orbit": "Pallas",
+      "name": "Pallas",
+      "latlng": {
+        "lat": 3361.347404175317,
+        "lng": 4269.155132819555
+      }
+    },
+    {
+      "orbit": "Ceres",
+      "name": "Ceres",
+      "latlng": {
+        "lat": 4269.155132819555,
+        "lng": 5278.652595824682
+      }
+    },
+    {
+      "orbit": "Jupiter",
+      "name": "Júpiter",
+      "latlng": {
+        "lat": 3021.9275377257936,
+        "lng": 4559.599421296001
+      }
+    },
+    {
+      "orbit": "Saturn",
+      "name": "Saturno",
+      "latlng": {
+        "lat": 4189.487205921866,
+        "lng": 2524.7377877920117
+      }
+    },
+    {
+      "orbit": "Urano",
+      "name": "Urano",
+      "latlng": {
+        "lat": 6672.984770118101,
+        "lng": 2877.4111217702157
+      }
+    },
+    {
+      "orbit": "Netuno",
+      "name": "Netuno",
+      "latlng": {
+        "lat": 4362.749552356614,
+        "lng": 7559.717962380877
+      }
+    },
+    {
+      "orbit": "Pluto and Haumea",
+      "name": "Plutão",
+      "latlng": {
+        "lat": 8039.856078408811,
+        "lng": 4287.277592921443
+      }
+    },
+    {
+      "orbit": "Haumea",
+      "name": "Haumea",
+      "latlng": {
+        "lat": 8039.928193083451,
+        "lng": 4296.886404371212
+      }
+    },
+    {
+      "orbit": "Eris",
+      "name": "Eris",
+      "latlng": {
+        "lat": 6194.15136466439,
+        "lng": 7533.402661094093
+      }
+    },
+    {
+      "orbit": "Makemake",
+      "name": "Makemake",
+      "latlng": {
+        "lat": 7143.221306318734,
+        "lng": 1897.6413445676662
+      }
+    }
+  ]
+}

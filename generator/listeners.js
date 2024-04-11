@@ -29,12 +29,13 @@ dateInput.addEventListener("change", function () {
   updatePositions(selectedDate);
 });
 
-document.getElementById("saveButton").addEventListener("click", saveImage);
-document.getElementById("saveButton52").addEventListener("click", saveImage52);
-document
-  .getElementById("saveButton52Json")
-  .addEventListener("click", saveJson52);
+document.getElementById("saveImage").addEventListener("click", saveImage);
+document.getElementById("saveJson").addEventListener("click", saveJson);
+document.getElementById("saveSystemImages").addEventListener("click", saveSystemImages);
+document.getElementById("saveSystemJsons").addEventListener("click", saveSystemJsons);
+document.getElementById("saveAllJsons").addEventListener("click", saveAllJsons);
 document.getElementById("saveUsAll").addEventListener("click", saveUsAll);
+
 
 export async function getSystemData(selectedJson) {
   let systemData = {};
@@ -95,7 +96,7 @@ document.querySelectorAll(".navbar-item").forEach((item) => {
   });
 });
 
-export async function saveImage52() {
+export async function saveSystemImages() {
   const startDate = new Date(2224, 5, 1);
   for (let i = 0; i < 52; i++) {
     const selectedDate = new Date(
@@ -104,13 +105,11 @@ export async function saveImage52() {
     const formattedDate = selectedDate.toLocaleDateString("pt-BR");
     generateImage(formattedDate);
     console.log(systemData.id + " Imagem: " + (parseInt(i)+1) + " salva para a data: ", formattedDate);
-    generateMarkers(formattedDate);
-    console.log(systemData.id + " JSON: " + (parseInt(i)+1) + " salva para a data: ", formattedDate);
-    
+ 
   }
 }
 
-export function saveJson52() {
+export function saveSystemJsons() {
   const startDate = new Date(2224, 5, 1);
   for (let i = 0; i < 52; i++) {
     const selectedDate = new Date(
@@ -118,7 +117,7 @@ export function saveJson52() {
     );
     const formattedDate = selectedDate.toLocaleDateString("pt-BR");
     generateMarkers(formattedDate);
-    console.log("Json salva para a data: ", formattedDate);
+    console.log(systemData.id + " JSON: " + (parseInt(i)+1) + " salva para a data: ", formattedDate);
   }
 }
 
@@ -130,7 +129,21 @@ function saveUsAll() {
     await updateSystemData(selectedJson);
     updateMap(ctx, canvas, systemData);
 
-    saveImage52();
+    saveSystemImages();
+    saveSystemJsons();
+  });
+
+}
+
+function saveAllJsons() {
+  const all = ["innerSun", "earth", "mars", "jupiter", "sun"];
+
+  all.forEach(async element => {
+    selectedJson = element;
+    await updateSystemData(selectedJson);
+    updateMap(ctx, canvas, systemData);
+
+    saveSystemJsons();
   });
 
 }
@@ -139,6 +152,12 @@ function saveImage() {
   const selectedDate = dateInput.value;
 
   generateImage(selectedDate);
+}
+
+
+function saveJson() {
+  const selectedDate = dateInput.value;
+
   generateMarkers(selectedDate);
 }
 
@@ -157,8 +176,12 @@ function generateImage(selectedDate) {
   document.body.removeChild(link);
 }
 
-function generateMarkers(date) {
-  updatePositions(date);
+function generateMarkers(selectedDate) {
+  updatePositions(selectedDate);
+
+  const formattedDate = formatDate(selectedDate);
+
+  systemData.imageURL = `${systemData.id}-${formattedDate}.png`
 
   var placesData = {
     systemId: systemData.id,

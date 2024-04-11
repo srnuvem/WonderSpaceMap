@@ -73,7 +73,7 @@
             "grauBase": 0,
             "places": [
                 {
-                    "name": "Mercurio1",
+                    "name": "Mercurio 1",
                     "title": "Luna 1",
                     "description": "Luna 1",
                     "imageUrl": "luna1.png",
@@ -81,7 +81,7 @@
                     "yOffset": 1
                 },
                 {
-                    "name": "Mercurio2",
+                    "name": "Mercurio 2",
                     "title": "Luna 2",
                     "description": "Luna 1",
                     "imageUrl": "luna1.png",
@@ -113,7 +113,7 @@
             "grauBase": 60,
             "places": [
                 {
-                    "name": "Mercurio1",
+                    "name": "Vênus",
                     "title": "Luna 1",
                     "description": "Luna 1",
                     "imageUrl": "luna1.png",
@@ -145,7 +145,7 @@
             "grauBase": 300,
             "places": [
                 {
-                    "name": "Mercurio1",
+                    "name": "Terra",
                     "title": "Luna 1",
                     "description": "Luna 1",
                     "imageUrl": "luna1.png",
@@ -177,12 +177,19 @@
             "grauBase": 60,
             "places": [
                 {
-                    "name": "Mercurio1",
+                    "name": "Hongse",
                     "title": "Luna 1",
                     "description": "Luna 1",
                     "imageUrl": "luna1.png",
-                    "xOffset": 0,
-                    "yOffset": 0
+                    "xOffset": -5,
+                    "yOffset": -5
+                },{
+                    "name": "Krasny",
+                    "title": "Luna 1",
+                    "description": "Luna 1",
+                    "imageUrl": "luna1.png",
+                    "xOffset": 5,
+                    "yOffset": 5
                 }
             ]
         },
@@ -209,7 +216,7 @@
             "grauBase": 300,
             "places": [
                 {
-                    "name": "Mercurio1",
+                    "name": "Vesta",
                     "title": "Luna 1",
                     "description": "Luna 1",
                     "imageUrl": "luna1.png",
@@ -241,7 +248,7 @@
             "grauBase": 210,
             "places": [
                 {
-                    "name": "Mercurio1",
+                    "name": "Pallas",
                     "title": "Luna 1",
                     "description": "Luna 1",
                     "imageUrl": "luna1.png",
@@ -262,7 +269,7 @@
             "grauBase": 120,
             "places": [
                 {
-                    "name": "Mercurio1",
+                    "name": "Ceres",
                     "title": "Luna 1",
                     "description": "Luna 1",
                     "imageUrl": "luna1.png",
@@ -305,7 +312,7 @@
             "grauBase": 180,
             "places": [
                 {
-                    "name": "Mercurio1",
+                    "name": "Júpiter",
                     "title": "Luna 1",
                     "description": "Luna 1",
                     "imageUrl": "luna1.png",
@@ -337,7 +344,7 @@
             "grauBase": 270,
             "places": [
                 {
-                    "name": "Mercurio1",
+                    "name": "Saturno",
                     "title": "Luna 1",
                     "description": "Luna 1",
                     "imageUrl": "luna1.png",
@@ -391,7 +398,7 @@
             "grauBase": 330,
             "places": [
                 {
-                    "name": "Mercurio1",
+                    "name": "Urano",
                     "title": "Luna 1",
                     "description": "Luna 1",
                     "imageUrl": "luna1.png",
@@ -423,7 +430,7 @@
             "grauBase": 90,
             "places": [
                 {
-                    "name": "Mercurio1",
+                    "name": "Netuno",
                     "title": "Luna 1",
                     "description": "Luna 1",
                     "imageUrl": "luna1.png",
@@ -455,7 +462,7 @@
             "grauBase": 0,
             "places": [
                 {
-                    "name": "Mercurio1",
+                    "name": "Plutão",
                     "title": "Luna 1",
                     "description": "Luna 1",
                     "imageUrl": "luna1.png",
@@ -476,7 +483,7 @@
             "grauBase": 0.4,
             "places": [
                 {
-                    "name": "Mercurio1",
+                    "name": "Haumea",
                     "title": "Luna 1",
                     "description": "Luna 1",
                     "imageUrl": "luna1.png",
@@ -497,7 +504,7 @@
             "grauBase": 60,
             "places": [
                 {
-                    "name": "Mercurio1",
+                    "name": "Eris",
                     "title": "Luna 1",
                     "description": "Luna 1",
                     "imageUrl": "luna1.png",
@@ -518,7 +525,7 @@
             "grauBase": 320,
             "places": [
                 {
-                    "name": "Mercurio1",
+                    "name": "Makemake",
                     "title": "Luna 1",
                     "description": "Luna 1",
                     "imageUrl": "luna1.png",
