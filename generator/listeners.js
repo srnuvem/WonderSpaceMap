@@ -95,7 +95,7 @@ document.querySelectorAll(".navbar-item").forEach((item) => {
 
 export async function saveImage52() {
   const startDate = new Date(2224, 5, 1);
-  for (let i = 0; i < 52; i++) {
+  for (let i = 0; i < 12; i++) {
     const selectedDate = new Date(
       startDate.getTime() + i * 7 * 24 * 60 * 60 * 1000
     );
@@ -106,9 +106,9 @@ export async function saveImage52() {
   }
 }
 
-export async function saveJson52() {
+export function saveJson52() {
   const startDate = new Date(2224, 5, 1);
-  for (let i = 0; i < 52; i++) {
+  for (let i = 0; i < 12; i++) {
     const selectedDate = new Date(
       startDate.getTime() + i * 7 * 24 * 60 * 60 * 1000
     );
@@ -148,21 +148,20 @@ function generateMarkers(date) {
     systemId: systemData.id,
     systemDate:  systemData.date,
     systemName: systemData.name,
-    markersData: systemData.markersData,
-    imageURL: systemData.imageURL
+    imageURL: systemData.imageURL,
+    markersData: systemData.markersData
   };
 
   // Converte os dados dos marcadores para JSON
-  const markersJSON = JSON.stringify(placesData, null, 2);
+  const placesDataJSON = JSON.stringify(placesData, null, 2);
 
   // Salva o JSON em um arquivo
-  const blob = new Blob([markersJSON], { type: "application/json" });
+  const blob = new Blob([placesDataJSON], { type: "application/json" });
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url;
   a.download = `${systemData.id}-${systemData.date}.json`;
   document.body.appendChild(a);
   a.click();
-  window.URL.revokeObjectURL(url);
   document.body.removeChild(a);
 }
