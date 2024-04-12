@@ -151,9 +151,9 @@ export function draw(ctx, canvas, systemData) {
     for (const orbit in orbits) {
         drawGuideLine(ctx, canvas, orbits[orbit], scale, bodyScale)
         drawDividers(ctx, canvas, orbits[orbit], scale, bodyScale);
-        if (parseInt(orbit.diametro) != 0) {
-            drawBody(ctx, canvas, orbits[orbit], scale, bodyScale);
-        }
+        // if (parseInt(orbit.diametro) != 0) {
+        //     drawBody(ctx, canvas, orbits[orbit], scale, bodyScale);
+        // }
 
     }
     drawPrimary(ctx, canvas, primary, scale, bodyScale);

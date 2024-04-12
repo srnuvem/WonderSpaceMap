@@ -102,9 +102,17 @@ export function updateMap(systemData) {
 function addMarkers(map, systemData) {
   clearMap(map);
 
+  const iconSize = [100, 100]; // Tamanho fixo do ícone do marcador
+
   systemData.markersData.forEach(markerData => {
     const { name, latlng } = markerData;
-    L.marker([latlng.lat, latlng.lng]).addTo(map).bindPopup(name);
+    const markerIcon = L.icon({
+      iconUrl: 'marker-icon.png', // URL do ícone do marcador
+      iconSize: iconSize, // Tamanho do ícone do marcador
+      iconAnchor: [iconSize[0] / 2, iconSize[1]/2], // Ponto de ancoragem do ícone
+    });
+    
+    L.marker([latlng.lat, latlng.lng], { icon: markerIcon }).addTo(map).bindPopup(name);
   });
 }
 

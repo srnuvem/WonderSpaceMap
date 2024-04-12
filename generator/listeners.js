@@ -98,7 +98,7 @@ document.querySelectorAll(".navbar-item").forEach((item) => {
 
 export async function saveSystemImages() {
   const startDate = new Date(2224, 5, 1);
-  for (let i = 0; i < 52; i++) {
+  for (let i = 0; i < 1; i++) {
     const selectedDate = new Date(
       startDate.getTime() + i * 7 * 24 * 60 * 60 * 1000
     );
@@ -111,7 +111,7 @@ export async function saveSystemImages() {
 
 export function saveSystemJsons() {
   const startDate = new Date(2224, 5, 1);
-  for (let i = 0; i < 52; i++) {
+  for (let i = 0; i < 0; i++) {
     const selectedDate = new Date(
       startDate.getTime() + i * 7 * 24 * 60 * 60 * 1000
     );
