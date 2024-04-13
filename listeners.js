@@ -28,7 +28,7 @@ dateInput.addEventListener("change", function () {
   updatePositions(selectedDate);
 });
 
-document.getElementById("saveImage").addEventListener("click", saveImage);
+// document.getElementById("saveImage").addEventListener("click", saveImage);
 
 export async function getSystemData(selectedJson) {
   let systemData = {};
