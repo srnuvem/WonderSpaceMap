@@ -40,7 +40,7 @@ document.getElementById("saveUsAll").addEventListener("click", saveUsAll);
 export async function getSystemData(selectedJson) {
   let systemData = {};
 
-  await fetch(`${selectedJson}.json`)
+  await fetch(`./${selectedJson}.json`)
     .then((response) => response.json())
     .then((data) => {
       systemData = data;
