@@ -1,4 +1,4 @@
-import { updateMap } from "./script.js";
+import { updateMap, resetMap } from "./script.js";
 
 const dateInput = document.getElementById("dateInput");
 const dateSlider = document.getElementById("dateSlider");
@@ -81,17 +81,20 @@ export async function updatePositions(dateText) {
 
 document.querySelectorAll(".navbar-item").forEach((item) => {
   item.addEventListener("click", async function () {
-    // Defina o campo de texto para a data "01/06/2224"
+    // Resetar o mapa
+    resetMap();
+
+    // Definir o campo de texto para a data "01/06/2224"
     const dateInput = document.getElementById("dateInput");
     dateInput.value = "01/06/2224";
 
-    // Defina o slider para a posição zero
+    // Definir o slider para a posição zero
     const dateSlider = document.getElementById("dateSlider");
     dateSlider.value = 0;
+
+    // Atualizar os dados do sistema e o mapa
     selectedJson = this.getAttribute("data-json");
     await updateSystemData(selectedJson);
     updateMap(systemData);
-
-
   });
 });
