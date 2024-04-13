@@ -2,10 +2,8 @@ import { updateMap } from "./script.js";
 
 const dateInput = document.getElementById("dateInput");
 const dateSlider = document.getElementById("dateSlider");
-const canvas = document.getElementById("myCanvas");
-const ctx = canvas.getContext("2d");
 
-let selectedJson = "sun";
+let selectedJson = "mars";
 let systemData = await getSystemData(selectedJson);
 
 dateSlider.addEventListener("input", function () {
@@ -30,12 +28,6 @@ dateInput.addEventListener("change", function () {
 });
 
 document.getElementById("saveImage").addEventListener("click", saveImage);
-document.getElementById("saveJson").addEventListener("click", saveJson);
-document.getElementById("saveSystemImages").addEventListener("click", saveSystemImages);
-document.getElementById("saveSystemJsons").addEventListener("click", saveSystemJsons);
-document.getElementById("saveAllJsons").addEventListener("click", saveAllJsons);
-document.getElementById("saveUsAll").addEventListener("click", saveUsAll);
-
 
 export async function getSystemData(selectedJson) {
   let systemData = {};
@@ -83,124 +75,23 @@ export async function updatePositions(dateText) {
   const formattedDate = selectedDate.toLocaleDateString("pt-BR");
 
   systemData.date = formattedDate;
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  updateMap(ctx, canvas, systemData);
+  updateMap(systemData);
 }
 
 document.querySelectorAll(".navbar-item").forEach((item) => {
   item.addEventListener("click", async function () {
+    // Defina o campo de texto para a data "01/06/2224"
+    const dateInput = document.getElementById("dateInput");
+    dateInput.value = "01/06/2224";
+
+    // Defina o slider para a posição zero
+    const dateSlider = document.getElementById("dateSlider");
+    dateSlider.value = 0;
     selectedJson = this.getAttribute("data-json");
     await updateSystemData(selectedJson);
-    updateMap(ctx, canvas, systemData);
+    updateMap(systemData);
+
+
   });
 });
-
-export async function saveSystemImages() {
-  const startDate = new Date(2224, 5, 1);
-  for (let i = 0; i < 1; i++) {
-    const selectedDate = new Date(
-      startDate.getTime() + i * 7 * 24 * 60 * 60 * 1000
-    );
-    const formattedDate = selectedDate.toLocaleDateString("pt-BR");
-    generateImage(formattedDate);
-    console.log(systemData.id + " Imagem: " + (parseInt(i)+1) + " salva para a data: ", formattedDate);
- 
-  }
-}
-
-export function saveSystemJsons() {
-  const startDate = new Date(2224, 5, 1);
-  for (let i = 0; i < 0; i++) {
-    const selectedDate = new Date(
-      startDate.getTime() + i * 7 * 24 * 60 * 60 * 1000
-    );
-    const formattedDate = selectedDate.toLocaleDateString("pt-BR");
-    generateMarkers(formattedDate);
-    console.log(systemData.id + " JSON: " + (parseInt(i)+1) + " salva para a data: ", formattedDate);
-  }
-}
-
-function saveUsAll() {
-  const all = ["innerSun", "earth", "mars", "jupiter", "sun"];
-
-  all.forEach(async element => {
-    selectedJson = element;
-    await updateSystemData(selectedJson);
-    updateMap(ctx, canvas, systemData);
-
-    saveSystemImages();
-    saveSystemJsons();
-  });
-
-}
-
-function saveAllJsons() {
-  const all = ["innerSun", "earth", "mars", "jupiter", "sun"];
-
-  all.forEach(async element => {
-    selectedJson = element;
-    await updateSystemData(selectedJson);
-    updateMap(ctx, canvas, systemData);
-
-    saveSystemJsons();
-  });
-
-}
-
-function saveImage() {
-  const selectedDate = dateInput.value;
-
-  generateImage(selectedDate);
-}
-
-
-function saveJson() {
-  const selectedDate = dateInput.value;
-
-  generateMarkers(selectedDate);
-}
-
-function generateImage(selectedDate) {
-  updatePositions(selectedDate);
-
-  const formattedDate = formatDate(selectedDate);
-
-  const dataURL = canvas.toDataURL("image/png");
-  const link = document.createElement("a");
-  link.href = dataURL;
-  link.download = `${systemData.id}-${formattedDate}.png`;
-  systemData.imageURL = link.download;
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-}
-
-function generateMarkers(selectedDate) {
-  updatePositions(selectedDate);
-
-  const formattedDate = formatDate(selectedDate);
-
-  systemData.imageURL = `${systemData.id}-${formattedDate}.png`
-
-  var placesData = {
-    systemId: systemData.id,
-    systemDate: systemData.date,
-    systemName: systemData.name,
-    imageURL: systemData.imageURL,
-    markersData: systemData.markersData,
-  };
-
-  // Converte os dados dos marcadores para JSON
-  const placesDataJSON = JSON.stringify(placesData, null, 2);
-
-  // Salva o JSON em um arquivo
-  const blob = new Blob([placesDataJSON], { type: "application/json" });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = `${systemData.id}-${systemData.date}.json`;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-}

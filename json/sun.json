@@ -181,15 +181,15 @@
                     "title": "Luna 1",
                     "description": "Luna 1",
                     "imageUrl": "luna1.png",
-                    "xOffset": -5,
-                    "yOffset": -5
+                    "xOffset": -3,
+                    "yOffset": -3
                 },{
                     "name": "Krasny",
                     "title": "Luna 1",
                     "description": "Luna 1",
                     "imageUrl": "luna1.png",
-                    "xOffset": 5,
-                    "yOffset": 5
+                    "xOffset": 3,
+                    "yOffset": 3
                 }
             ]
         },

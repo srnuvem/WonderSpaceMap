@@ -1,23 +1,22 @@
-import { draw } from "./drawSystem.js";
 import { getSystemData } from "./listeners.js";
 
-const canvas = document.getElementById("myCanvas");
-const ctx = canvas.getContext("2d");
+const minZoom = -3;
+let currentZoom = minZoom;
 
-var map = L.map("map", {
+var map = (map = L.map("map", {
   crs: L.CRS.Simple,
-  minZoom: -3,
-});
-let markersLayer = L.layerGroup().addTo(map);
+  minZoom: minZoom,
+}));
 
-let systemData = await getSystemData("sun");
+let bodiesLayer = L.layerGroup().addTo(map);
+let placesLayer = L.layerGroup().addTo(map);
 
-updateMap(ctx, canvas, systemData);
+let systemData = await getSystemData("mars");
 
-export function updateMap(ctx, canvas, systemData) {
-  draw(ctx, canvas, systemData);
+updateMap(systemData);
 
-  var imageUrl = canvas.toDataURL();
+export function updateMap(systemData) {
+  var imageUrl = "../" + systemData.imageUrl;
 
   var imageBounds = [
     [0, 0],
@@ -29,12 +28,102 @@ export function updateMap(ctx, canvas, systemData) {
   L.imageOverlay(imageUrl, imageBounds).addTo(map);
 
   map.setMaxBounds(imageBounds);
-  map.setView([4320, 4320], -3);
+  map.setView([4320, 4320], minZoom);
 
-  addMarkers(map, systemData);
+  addBodies(map, systemData);
+  // addPlaces(map, systemData);
 }
 
-export function addMarkers(map, systemData) {
+export function addBodies(map, systemData) {
+  clearMap(map);
+
+  const orbits = systemData.orbits;
+  const mapCenter = map.latLngToContainerPoint(map.getCenter());
+
+  for (const orbit in orbits) {
+    const orbitData = orbits[orbit];
+    const bodyDiameter = orbitData.diametro * systemData.bodyScale;
+    if (bodyDiameter > 0) {
+      const raioOrbita = (orbitData.diametroOrbita * systemData.scale) / 8;
+      const x =
+        mapCenter.x +
+        raioOrbita * Math.cos((orbitData.grau - 90) * (Math.PI / 180));
+      const y =
+        mapCenter.y +
+        raioOrbita * Math.sin((orbitData.grau - 90) * (Math.PI / 180));
+
+      const latLng = map.containerPointToLatLng(L.point(x, y));
+
+      var html = `
+      <div style="width: ${bodyDiameter}px; height: ${bodyDiameter}px; background-color: ${orbitData.cor}; border-radius: 50%; position: relative;">
+        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; font-size: 12px;">
+          ${orbitData.name}
+        </div>
+      </div>`;
+
+      // Criar um ícone personalizado para o marcador
+      const markerIcon = L.divIcon({
+        className: "custom-marker",
+        html: html,
+        iconAnchor: [bodyDiameter / 2, bodyDiameter / 2],
+      });
+
+      const marker = L.marker(latLng, { icon: markerIcon }).bindPopup(
+        orbitData.name
+      );
+      bodiesLayer.addLayer(marker);
+    }
+  }
+}
+
+// Event listener for zoom end
+map.on("zoomend", function () {
+  // Calcula o multiplicador com base na diferença de zoom
+  var zoomDifference = map.getZoom() - currentZoom;
+  var zoomMultiplier = Math.pow(1.5, zoomDifference);
+
+  // Atualiza o nível de zoom atual
+  currentZoom = map.getZoom();
+
+  // Redimensiona os ícones dos marcadores
+  resizeBodiesIcons(map, zoomMultiplier);
+});
+
+function resizeBodiesIcons(map, zoomMultiplier) {
+  map.eachLayer(function (layer) {
+    if (layer instanceof L.Marker && bodiesLayer.hasLayer(layer)) {
+      var icon = layer.options.icon;
+      var iconSize = icon.options.iconSize;
+      if (iconSize) {
+        var newSize = [
+          iconSize[0] * zoomMultiplier,
+          iconSize[0] * zoomMultiplier,
+        ];
+        var newAnchor = [newSize[0] / 2, newSize[0] / 2];
+        icon.options.iconSize = newSize;
+        icon.options.iconAnchor = newAnchor;
+        var popupContent = layer.getPopup()
+          ? layer.getPopup().getContent()
+          : "";
+        layer.setIcon(icon);
+
+        var newBodyDiameter = parseFloat(newSize[0]);
+        var html = `
+        <div style="width: ${newBodyDiameter}px; height: ${newBodyDiameter}px; background-color: ${
+          icon.options.html.match(/background-color:\s*(.*?);/)[1]
+        }; border-radius: 50%; position: relative;">
+          <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; font-size: 12px;">
+            ${popupContent}
+          </div>
+        </div>`;
+        icon.options.html = html;
+        layer.setIcon(icon);
+      }
+    }
+  });
+}
+
+export function addPlaces(map, systemData) {
   clearMap(map);
 
   const orbits = systemData.orbits;
@@ -60,22 +149,15 @@ export function addMarkers(map, systemData) {
       const latLng = map.containerPointToLatLng(L.point(x, y));
 
       const marker = L.marker(latLng).bindPopup(placeData.name);
-      markersLayer.addLayer(marker);
-
-      // Adiciona os dados do marcador ao array
-      markersData.push({
-        orbit: orbit,
-        name: placeData.name,
-        latlng: { lat: latLng.lat, lng: latLng.lng },
-      });
+      placesLayer.addLayer(marker);
     }
   }
   systemData.markersData = markersData;
 }
 
-
 export function clearMap(map) {
-  markersLayer.clearLayers();
+  bodiesLayer.clearLayers();
+  placesLayer.clearLayers();
 
   map.eachLayer(function (layer) {
     if (layer instanceof L.Marker) {

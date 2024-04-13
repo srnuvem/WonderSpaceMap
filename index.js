@@ -81,8 +81,7 @@ let markersLayer = L.layerGroup().addTo(map);
 updateMap(systemData);
 
 export function updateMap(systemData) {
-  console.log(systemData.imageURL);
-  imageURL = `${systemData.imageURL}`;
+  imageURL = `sun.png`;
 
   var imageBounds = [
     [0, 0],
