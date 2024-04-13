@@ -2,7 +2,7 @@
     "id": "sun",
     "name": "Sistema Solar",
     "scale": 3,
-    "bodyScale": 7,
+    "bodyScale": 4,
     "date": "01-06-2224",
     "imageUrl":"sun.png",
     "primary": {
