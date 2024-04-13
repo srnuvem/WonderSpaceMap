@@ -18,7 +18,7 @@ updateMap(systemData);
 export function updateMap(systemData) {
   map.setView([4320, 4320], minZoom);
 
-  var imageUrl = "../" + systemData.imageUrl;
+  var imageUrl = systemData.imageUrl;
 
   var imageBounds = [
     [0, 0],
@@ -42,7 +42,7 @@ export function addBodies(map, systemData) {
 
   for (const orbit in orbits) {
     const orbitData = orbits[orbit];
-    const bodyDiameter = orbitData.diametro * systemData.bodyScale;
+    const bodyDiameter = orbitData.diametro * systemData.scale * systemData.bodyScale;
     if (bodyDiameter > 0) {
       const raioOrbita = (orbitData.diametroOrbita * systemData.scale) / 8;
       const x =
