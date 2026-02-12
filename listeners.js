@@ -8,7 +8,7 @@ let systemData = await getSystemData(selectedJson);
 
 dateSlider.addEventListener("input", function () {
   const sliderValue = parseInt(dateSlider.value);
-  const diaInicio = new Date(2224, 5, 1);
+  const diaInicio = new Date(2226, 1, 1);
   const selectedDate = new Date(
     diaInicio.getTime() + sliderValue * 7 * 24 * 60 * 60 * 1000
   );
@@ -61,7 +61,7 @@ function formatDate(dateString) {
 }
 
 export async function updatePositions(dateText) {
-  const diaInicio = new Date(2224, 5, 1);
+  const diaInicio = new Date(2226, 1, 1);
   const selectedDate = parseDate(dateText);
   const diasPassados = (selectedDate - diaInicio) / (1000 * 60 * 60 * 24);
   for (const orbit in systemData.orbits) {
