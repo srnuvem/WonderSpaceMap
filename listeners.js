@@ -85,9 +85,9 @@ document.querySelectorAll(".navbar-item").forEach((item) => {
     // Resetar o mapa
     resetMap();
 
-    // Definir o campo de texto para a data "01/06/2224"
+    // Definir o campo de texto para a data "01/06/2226"
     const dateInput = document.getElementById("dateInput");
-    dateInput.value = "01/06/2224";
+    dateInput.value = "01/06/2226";
 
     // Definir o slider para a posição zero
     const dateSlider = document.getElementById("dateSlider");
